@@ -1,0 +1,115 @@
+=== ASYNC / AWAIT ===
+
+WHAT IS IT:
+async/await is syntax built on top of Promises that lets you write
+asynchronous (non-blocking) code that LOOKS synchronous (top-to-bottom, 
+easy to read) instead of chaining .then().then().then().
+
+WHY IT'S USED:
+JavaScript is single-threaded, meaning it can only do one thing at a time.
+Some operations take time (fetching data from a server, reading a file,
+querying a database) — these are called ASYNCHRONOUS operations. If JS
+waited (blocked) for these to finish before moving on, the entire program
+(and UI, in browsers) would freeze. async/await lets JS start a slow task,
+move on to other work, and come back to handle the result once it's ready —
+all while keeping your code readable.
+
+RETURN TYPE:
+- An `async` function ALWAYS returns a Promise, no matter what you return inside it.
+  - If you `return 5`, the function actually returns Promise<5> (a resolved promise wrapping 5).
+  - If you throw an error inside, it returns a REJECTED promise.
+- `await` unwraps a Promise's resolved VALUE (waits for it, then gives you the actual data,
+  not the promise wrapper).
+
+
+=== THE `async` KEYWORD ===
+Placing `async` before a function definition makes it return a Promise automatically.
+
+async function greet() {
+  return "Hello";
+}
+
+greet().then(value => console.log(value)); // "Hello"
+console.log(greet()); // Promise {<fulfilled>: 'Hello'}  <- proof it returns a Promise
+
+
+THE `await` KEYWORD
+`await` can ONLY be used INSIDE an async function. It pauses execution of
+that function (without blocking the rest of the program) until the Promise
+resolves, then returns the resolved value.
+
+
+=== REAL-WORLD EXAMPLE: FETCHING DATA ===
+async function getUser() {
+  try {
+    let response = await fetch("https://api.example.com/user/1");
+    let data = await response.json(); // .json() also returns a Promise, so we await it too
+    console.log(data);
+    return data;
+  } catch (error) {
+    console.log("Something went wrong:", error.message);
+  }
+}
+getUser();
+
+
+ERROR HANDLING: try/catch (replaces .catch()) 
+WHAT: Since await "unwraps" promises, if a promise REJECTS, it throws an
+      error at that line — so we wrap it in try/catch to handle failures.
+WHY: Cleaner than chaining .catch() after every .then().
+
+async function fetchData() {
+  try {
+    let result = await someAsyncOperation();
+    console.log(result);
+  } catch (error) {
+    console.log("Error caught:", error);
+  } finally {
+    console.log("This always runs, success or fail");
+  }
+}
+
+
+=== RUNNING MULTIPLE ASYNC OPERATIONS IN PARALLEL ===
+WHAT: If you await one thing at a time, tasks run SEQUENTIALLY (slower).
+      Use Promise.all() to run several async tasks in PARALLEL and await
+      them all together.
+RETURN TYPE: array (containing each promise's resolved value, in the SAME order)
+
+// SLOW (sequential) - each waits for the previous to finish:
+async function slow() {
+  let a = await task1(); // waits fully before starting task2
+  let b = await task2();
+  return [a, b];
+}
+
+// FAST (parallel) - all start immediately, wait together:
+async function fast() {
+  let [a, b] = await Promise.all([task1(), task2()]);
+  return [a, b];
+}
+
+
+=== ASYNC ARROW FUNCTIONS ===
+const getData = async () => {
+  let data = await fetchSomething();
+  return data;
+};
+
+
+=== KEY RULES / GOTCHAS ===
+1. `await` can only be used inside a function marked `async` (or at the
+   top level of ES modules).
+2. An async function ALWAYS returns a Promise — even a plain value gets wrapped.
+3. Forgetting `await` means you get a pending Promise object, not the actual value:
+
+async function getName() {
+  return "Yuyutsu";
+}
+let name = getName(); 
+console.log(name); // Promise {<fulfilled>: 'Yuyutsu'} -- WRONG, forgot await
+
+async function correct() {
+  let name = await getName();
+  console.log(name); // "Yuyutsu" -- CORRECT
+}

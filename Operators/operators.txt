@@ -1,0 +1,228 @@
+=== BASIC (ARITHMETIC) OPERATORS ===
+
+What: Perform mathematical calculations between two operands.
+Why: Used for all numeric computations — totals, calculations, counters.
+Return type: number (mostly), except + which can also return string (concatenation)
+
+1. Addition (+)
+console.log(5 + 3); // 8 (number)
+console.log("5" + 3); // "53" (string — if either operand is a string, + concatenates)
+
+2. Subtraction (-)
+console.log(5 - 3); // 2 (number)
+
+3. Multiplication (*)
+console.log(5 * 3); // 15 (number)
+
+4. Division (/)
+console.log(10 / 3); // 3.3333333333333335 (number)
+
+5. Modulus / Remainder (%)
+What: Returns the remainder after division.
+Why: Used to check even/odd numbers, cycle through values, pagination logic.
+console.log(10 % 3); // 1 (number)
+console.log(10 % 2); // 0 -> even number
+
+6. Exponentiation (**)
+What: Raises the first operand to the power of the second.
+console.log(2 ** 3); // 8 (number)
+
+7. Increment (++)
+What: Increases a variable's value by 1.
+let x = 5;
+x++;         // post-increment: returns old value THEN increments
+console.log(x); // 6
+++x;         // pre-increment: increments THEN returns new value
+console.log(x); // 7
+
+8. Decrement (--)
+let y = 5;
+y--;
+console.log(y); // 4
+
+
+=== ASSIGNMENT OPERATORS ===
+What: Assign values to variables, often combined with arithmetic (shorthand).
+Why: Used to reduce code repetition (x = x + 5  ==>  x += 5)
+Return type: whatever type the resulting value is
+
+let x = 10;
+x += 5;  // same as x = x + 5  -> 15
+x -= 3;  // same as x = x - 3  -> 12
+x *= 2;  // same as x = x * 2  -> 24
+x /= 4;  // same as x = x / 4  -> 6
+x %= 4;  // same as x = x % 4  -> 2
+x **= 3; // same as x = x ** 3 -> 8
+
+console.log(x); // 8
+
+
+=======================================================================
+=======================================================================
+=======================================================================
+
+=== COMPARISON OPERATORS ===
+
+What: Compare two values and return a boolean result.
+Why: Used in conditions (if statements, loops, filters) to make decisions.
+Return type: boolean (true/false) — ALWAYS
+
+1. Equal (==)
+What: Compares values AFTER type coercion (converts types to match before comparing).
+console.log(5 == "5");   // true  (string "5" is coerced to number 5)
+console.log(0 == false); // true  (false is coerced to 0)
+
+2. Strict Equal (===)
+What: Compares both VALUE and TYPE, no coercion. 
+Why: This is the RECOMMENDED way to compare — avoids unexpected bugs from coercion.
+console.log(5 === "5");   // false (different types: number vs string)
+console.log(5 === 5);     // true
+
+3. Not Equal (!=)
+console.log(5 != "5"); // false (coerced, so they're considered equal)
+
+4. Strict Not Equal (!==)
+console.log(5 !== "5"); // true (different types)
+
+5. Greater Than (>)
+console.log(10 > 5); // true
+
+6. Less Than (<)
+console.log(10 < 5); // false
+
+7. Greater Than or Equal (>=)
+console.log(10 >= 10); // true
+
+8. Less Than or Equal (<=)
+console.log(10 <= 9); // false
+
+
+=== WHY === (returns boolean) 
+console.log(typeof (5 === 5)); // "boolean"
+
+RULE OF THUMB: Always prefer === and !== over == and != in real projects,
+to avoid bugs caused by JavaScript's automatic type coercion.
+
+======================================================================================
+===========================================================================================
+=======================================================================================
+
+=== LOGICAL OPERATORS ===
+
+What: Combine or invert boolean expressions.
+Why: Used to build complex conditions (e.g., "if age > 18 AND hasID").
+Return type: boolean, BUT && and || can also return one of the actual operand VALUES (not just true/false) — this is called "short-circuiting".
+
+1. AND (&&)
+What: Returns true only if BOTH conditions are true.
+Behavior: Returns the FIRST falsy value, or the LAST value if all are truthy.
+
+console.log(true && true);   // true
+console.log(true && false);  // false
+console.log(5 && "hello");   // "hello" (both truthy, returns last value)
+console.log(0 && "hello");   // 0 (0 is falsy, short-circuits and returns 0)
+
+Real use case (default values / guard checks):
+let user = { name: "Yuyutsu" };
+user && console.log(user.name); // only runs console.log if user exists
+
+
+2. OR (||)
+What: Returns true if AT LEAST ONE condition is true.
+Behavior: Returns the FIRST truthy value, or the LAST value if all are falsy.
+
+console.log(true || false);  // true
+console.log(false || false); // false
+console.log(0 || "default"); // "default" (0 is falsy, so returns next value)
+
+Real use case (fallback/default values):
+let username = userInput || "Guest";
+// if userInput is empty/undefined/falsy, username becomes "Guest"
+
+
+3. NOT (!)
+What: Inverts a boolean value.
+Return type: boolean (always)
+
+console.log(!true);  // false
+console.log(!0);     // true (0 is falsy, so !0 is true)
+console.log(!"");    // true ("" is falsy)
+
+
+4. Nullish Coalescing (??)
+What: Returns the right-hand value ONLY IF the left-hand value is null or undefined
+      (unlike ||, it does NOT treat 0, "", or false as "empty").
+Why: Used when 0 or "" are valid values but you still want a fallback for null/undefined.
+Return type: matches whichever operand is returned
+
+let count = 0;
+console.log(count || 10); // 10 (WRONG here, because 0 is falsy but is a valid value!)
+console.log(count ?? 10); // 0  (CORRECT, because 0 is not null/undefined)
+
+let value = null;
+console.log(value ?? "default"); // "default"
+
+
+=== TRUTHY vs FALSY VALUES (important background) ===
+Falsy values in JS (only these 6): false, 0, "", null, undefined, NaN
+Everything else is truthy (including "0", "false" as strings, [], {} — these ARE truthy!)
+
+console.log(Boolean("0"));  // true  (non-empty string is truthy)
+console.log(Boolean([]));   // true  (empty array is truthy)
+console.log(Boolean({}));   // true  (empty object is truthy)
+
+============================================================================================================
+============================================================================================================
+============================================================================================================
+
+=== BITWISE OPERATORS ===
+
+What: Perform operations on the individual BITS (binary representation) of numbers.
+Why: Rarely used in everyday web dev, but useful for low-level operations, 
+     permission flags, performance-critical code, and certain algorithms.
+Return type: number (always — result is a 32-bit signed integer)
+
+1. AND (&)
+What: Returns 1 in each bit position where BOTH bits are 1.
+console.log(5 & 1); 
+// 5 = 101, 1 = 001 -> AND = 001 -> 1
+// Output: 1
+
+2. OR (|)
+What: Returns 1 in each bit position where AT LEAST ONE bit is 1.
+console.log(5 | 1); 
+// 101 | 001 = 101 -> 5
+// Output: 5
+
+3. XOR (^)
+What: Returns 1 in each bit position where bits are DIFFERENT.
+console.log(5 ^ 1); 
+// 101 ^ 001 = 100 -> 4
+// Output: 4
+
+4. NOT (~)
+What: Inverts all bits (also computed as -(x + 1)).
+console.log(~5); // -6
+
+5. Left Shift (<<)
+What: Shifts bits to the LEFT, filling with zeros (multiplies by 2 per shift).
+console.log(5 << 1); // 10 (5 * 2^1)
+
+6. Right Shift (>>)
+What: Shifts bits to the RIGHT, preserving sign (divides by 2 per shift, rounds down).
+console.log(5 >> 1); // 2 (5 / 2, floored)
+
+7. Unsigned Right Shift (>>>)
+What: Shifts bits right, filling with zeros regardless of sign (no negative results).
+console.log(-5 >>> 1); // 2147483645 (treats -5 as unsigned 32-bit number)
+
+
+=== PRACTICAL USE CASE: PERMISSION FLAGS ===
+const READ = 1;    // 001
+const WRITE = 2;    // 010
+const EXECUTE = 4;  // 100
+
+let userPermission = READ | WRITE; // 011 = 3 (has read AND write)
+
+console.log((userPermission & READ) !== 0);    // true  (has read permission)
+console.log((userPermission & EXECUTE) !== 0); // false (no execute permission)

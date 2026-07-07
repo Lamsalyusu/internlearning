@@ -1,0 +1,455 @@
+// let age = 18;
+// let status = (age>18) ? "minor" : 'major';
+// console.log(status);
+
+
+// let arr = [1,2,3]
+
+// let arr = ["hello", "hi", "nothin","rfbej","dnkendf"]
+// let removed = arr.splice(3,1,"hellu","nice")
+// console.log(arr);
+// console.log(removed);
+// const numbers = [25, 5, 12];
+
+// numbers.sort((a, b) => {
+//   console.log(`Comparing a: ${a} and b: ${b} | Result: ${a - b}`);
+//   return  b-a;
+// });
+
+// console.log("Final Output:", numbers);
+
+// let arr = [1,2,3,4];
+// arr.fill(0,1,2)
+// console.log(arr)
+
+// let arr = ["a","b","c"];
+// newarr = arr.join(",")
+// console.log(arr)
+// console.log(newarr)
+
+// let arr = [1,[2,3],[4,[5,6]]];
+// console.log(arr.flat());
+// console.log(arr.flat(5));
+
+
+// console.log(Array.isArray([1,2,3]));
+// console.log(Array.isArray("hello"));
+
+// let str = 123;
+// console.log(Array.from(str));
+
+// let arr = [1,2,3,4,5];
+// console.log(arr.indexOf(2,3));
+
+// function something(veggies , veggie){
+//     if (veggies.indexOf(veggie) === -1){
+//         veggies.push(veggie)
+//         console.log(`${veggie} added to the collection`)
+//     }else{
+//         console.log(`${veggie} already in the collection`)
+//     }
+// }
+
+// const veggies = ["a","b","c","d"]
+// something(veggies, "hello")
+// console.log(veggies)
+
+// const arr = [10,20,20,20];
+// console.log(arr.indexOf(20,0))
+
+// const arr = [10,20,30,40,10];
+// console.log(arr.lastIndexOf(10))
+// console.log(arr.includes(50));
+
+// let users = [
+//     {id:1,name:"Yuyutsu"}
+// ,{id:2,name:"Lamsal"}
+// ]
+
+// let user = users.find(u=>u.id ===1);
+// console.log(user)
+// console.log(user)
+
+
+// let arr = 
+// const arr = [10,20,30,40,10];
+// let found = arr.findIndex(f => f > 20);
+// console.log(found)
+// let found = arr.findLast(f => f < 10);
+// console.log(found)
+// let sm = arr.some(f => f>10)
+// console.log(sm)
+
+// arr.push(30);
+// console.log(arr)
+
+// let ev = arr.every(e => e >9);
+// console.log(ev)
+
+// let users = [
+//     {name:"A", age:30},
+//     {name:"B",age:45},
+//     {name:"C", age:20}
+// ]
+
+// let sorts = users.sort((a,b)=> a.age - b.age);
+// console.log(sorts)
+    
+// let arr = [1,2,3,4]
+// arr.forEach((currentValue,index,array)=>{
+//     console.log(`index:${index} : ${currentValue} : ${array}`)
+// });
+
+
+// let arr = [1,2,3,4,5,6,7,8,9,10,11,12,13,14]
+// let newarr = arr.map((currentValue,index,array)=>{
+//     console.log(`index:${index} : ${currentValue} : array:${array}`)
+// });
+// console.log();
+
+// let newarr = arr.map(n=>n*2);
+// console.log(typeof newarr);
+
+// let newones = arr.filter(n => n >10);
+// console.log(newones);
+// let arr = [1,2,3,4,5,6,7,8,9,10,11,12,13,14]
+
+// let newarr = arr.reduce((acc,currval,currin,arr)=>
+// {
+//     console.log(`acc :${acc},index:${currin}:currentval:${currval}, array:${arr}`);
+// },0);
+// let arr = ["True","False"]
+// let newarr = arr.reduceRight((acc,curr)=>acc+curr,0);
+// console.log(newarr);
+
+// for (let item of arr)
+// {
+//     console.log(item);
+// }
+
+// ler newarr = 
+// for(let [index,values] of arr.entries())
+// {
+//     console.log(index,values);
+// }
+
+
+
+// ==============================hoisting======================
+// sayHi();
+// function sayHi(){
+//     console.log("Hi");
+// }
+// console.log(a);
+// const a = 10;
+
+// multiply(4,5);
+// const multiply = function(a,b){
+//     console.log(a*b);
+// }
+
+// const makeuser = (name,age) => ({name:name ,age:age});
+// console.log(makeuser("yuyutsu",21));
+
+// const multiply = (a,b) => a*b;
+// console.log(multiply(4,5));
+
+// const regularfunction = function(){
+//     console.log(arguments);
+// }
+// regularfunction(1,2,3);
+
+// const arrowfunction = (...args)=>{
+//     console.log(args);
+// }
+// arrowfunction(1,2,3);
+
+
+//short hand way
+// const obj2 = {
+//     greet(){
+//         return "Hello";
+//     }
+// };
+
+// console.log(obj2.greet())
+
+// const obj1 = {
+//     greet:function(){
+//         return "Hello";
+//     }
+// };
+// console.log(obj1.greet());
+
+// const double = n=> n*2;
+// console.log(double(5));
+
+// (function() {
+//     // Code runs immediately
+//     console.log("IIFE executed!");
+// })();
+
+// (()=>{
+//     console.log("iife arrowfunction");
+// })();
+
+// (function(){
+//     console.log("iife executed")
+// })();
+
+// (()=>{
+//     console.log("arrow function iife");
+// })();
+
+// let fruits = ["apple","banana"];
+// for(let fruit of fruits){
+//     console.log(fruit);
+// };
+
+// let promise = new Promise((resolve,reject)=>{
+//     let success = false;
+//     if (success){
+//         resolve("Data Received");
+//     }
+//     else{
+//         reject("something went wrong");
+//     }
+
+// });
+
+// promise
+//     .then((data)=>{
+//     console.log(data);
+// })
+// .catch((error)=>{
+//     console.log(error)
+
+// });
+
+// let promise = new Promise((resolve,reject)=>{
+//     let data = fetch("https://dataweather.com");
+//     if (data){
+//         resolve('fetched data');
+//     }
+//     else{
+//         reject("Data not fetched");
+//     }
+// });
+
+// promise
+// .then((data)=>{
+//     console.log(data)
+// })
+// .catch((error)=>{
+//     console.log(error);
+// });
+
+// fetch ("https://openweatherdata.com")
+// .then((response)=>{
+//     return response.json();
+// })
+// .then((data)=>{
+//     console.log(data);
+// })
+// .catch((error)=>{
+//     console.log(error);
+// })
+
+// let promise = new Promise((resolve,reject)=>{
+//     let status = true;
+//     setTimeout(()=>{
+//         if (status){
+//             resolve("success");
+//         }
+//         else{
+//             reject("unsuccessful");
+//         }
+//     },1000);
+// });
+
+// promise
+// .then((data)=>{
+//     console.log(`success : ${data}`)
+// })
+
+// .catch((error)=>{
+//     console.log("error")
+// })
+
+// .finally(()=>{
+//     console.log("la j bhayo bhayo")
+// });
+
+
+///promise ko chaining
+// Promise.resolve(2)
+// .then((num)=>{
+//     return num +3;
+// })
+// .then((num)=>{
+//     return num *2;
+// })
+// .then((num)=>{
+//     console.log(num);
+// });
+
+// promise chaining 
+
+// fetch("./new.json")
+// .then((response)=>{
+//     return response.json();
+// })
+
+// .then((data)=>{
+//     console.log(data.temperature);
+//     return data; // passing data to next .then()
+// })
+// .then((data)=>{
+//     console.log(data.wind);
+//     return data.wind;
+// })
+// .then((wind)=>{
+//     console.log(wind[0]);
+// })
+// .catch((error)=>{
+//     console.log(error)
+// })
+
+// let promise1 = new Promise((resolve,reject)=>{
+//     setTimeout(()=>{
+//         resolve("Weather Data");
+//     },2000);
+// });
+
+// let promise2 = new Promise((resolve,reject)=>{
+//     setTimeout(()=>{
+//         resolve("weather data");
+//     },2000);
+// });
+
+// let promise3 = new Promise((resolve,reject)=>{
+//     setTimeout(()=>{
+//         resolve("Forecast Data");
+//     },2000)
+// });
+
+// let FetchA = fetch("https://hrendkjfde.com")
+// let FetchB = fetch("https://dwkjfhbdn.com")
+// let FetchC = fetch("https://dnewjfnewn.com")
+
+// // Promise.all([promise1,promise2,promise3])
+// Promise.all([
+//     FetchA.then((res)=>res.json),
+//     FetchB.then((res)=>res.json),
+//     FetchC.then((res)=>res.json)
+// ])
+// .then(([data1,data2,data3])=>{
+//     console.log(data1,data2,data3);
+// })
+// .catch((error)=>{
+//     console.log(error);
+// });
+
+// function hello(name){
+//     console.log("Hello " + name);
+// };
+// // hello("yuyutsu");
+// function processuser(){
+
+// }
+
+// function calculate(a,b,operations){
+//     operations(a,b);
+// }
+// function add(a,b){
+//     console.log(a+b);
+// }
+// calculate(5,4,add);
+
+// function someone(name){
+//     console.log(`Name : ${name}`);
+// };
+
+// function user(someone,age){
+//     someone("Yuyutsu");
+// }
+
+// user(someone,15);
+
+// function user(name,age){
+//     console.log(`User : ${name} with age : ${age}`);
+// };
+// function print(callback){
+//     callback("Yuyutsu",15);
+// };
+// print(user);
+
+// function add(a,b){
+//     console.log(a+b);
+// }
+// function sum(nums){
+//     nums(4,5);
+// }
+// sum(add);
+
+// here nums === add 
+// nums(4,5) because nums is now a function
+// nums === add 
+// nums(4,5) is exactly same as add(4,5)
+
+// function  sum (nums){
+//  sums(4,5)
+// }
+// sum(add)
+
+// is similar to 
+// function sum(add){
+// add(4,5)
+    // }
+
+
+
+// function sum(add(a,b){
+
+// });
+
+// setTimeout(()=>{
+//     console.log("Times up");
+// },3000);
+
+// getUser(1,function(user){
+//     getPosts(user.id,function(post){
+//         getComments(posts[0].id, function(comments){
+//             console.log(comments);
+//         })
+//     })
+// })
+
+// ===========================================================================================
+// ===========================================================================================
+
+// async function greet(){
+//     return "Hello";
+// }
+// // console.log(greet());
+// greet().then(value=>console.log(value));
+
+// async function run(){
+//     console.log("start");
+//     await delay(2000);
+//     console.log( "2 second paused"
+//     );
+// }
+
+
+async function getUser(){
+    try{
+        let response = await fetch("https://api.example.com/user/1");
+        let data = await response.json(); //json also returns a promise so we await it too
+        console.log(data);
+        return data;
+    }catch (error){
+        console.log(error.message);
+    }
+}
+getUser();

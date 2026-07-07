@@ -1,0 +1,435 @@
+=== ARRAY METHODS ===
+
+Arrays store ordered collections of values. Below are the most important
+methods, grouped by what they do to the original array (mutating vs non-mutating).
+
+--- MUTATING METHODS (change the original array) ---
+
+1. push(item)
+What: Adds one or more items to the END of an array.
+Why: Used to add new elements dynamically (e.g., adding a new todo item).
+Return type: number (the new length of the array)
+It mutates the existing array does not create a new array
+
+let arr = [1, 2, 3];
+let newLength = arr.push(4);
+console.log(arr);       // [1, 2, 3, 4]
+console.log(newLength); // 4
+
+
+2. pop()
+What: Removes the LAST item from an array.
+Why: Used to remove the most recently added element (stack behavior).
+Return type: the removed element (any type)
+mutates the existing array doesnot create a new one
+
+let arr = [1, 2, 3];
+let removed = arr.pop();
+console.log(arr);     // [1, 2]
+console.log(removed); // 3
+
+
+3. shift()
+What: Removes the FIRST item from an array.
+Why: Used to remove the oldest element (queue behavior).
+Return type: the removed element (any type)
+it doesnot creates a new array modifies the existing one 
+
+let arr = [1, 2, 3];
+let removed = arr.shift();
+console.log(arr);     // [2, 3]
+console.log(removed); // 1
+
+
+4. unshift(item)
+What: Adds one or more items to the BEGINNING of an array.
+Why: Used when new elements must go first.
+Return type: number (new length)
+
+let arr = [2, 3];
+arr.unshift(1);
+console.log(arr); // [1, 2, 3]
+
+
+5. splice(start, deleteCount, ...itemsToAdd)
+What: Adds/removes items from ANY position in the array.
+Why: The most flexible method — insert, remove, or replace elements at any index.
+Return type: array (containing the removed elements, empty array if none removed)
+mutates the existing array
+
+let arr = [1, 2, 3, 4, 5];
+let removedItems = arr.splice(1, 2, "a", "b"); 
+// starting at index 1, remove 2 items, insert "a","b"
+console.log(arr);          // [1, "a", "b", 4, 5]
+console.log(removedItems); // [2, 3]
+
+
+6. sort(compareFunction)
+What: Sorts elements of the array IN PLACE.
+Why: Used to arrange data (numbers, strings) in order.
+Return type: array (the sorted array — same reference as original)
+NOTE: default sort() converts elements to strings, so numeric sort needs a compare function.
+
+let nums = [10, 2, 33, 4];
+nums.sort(); 
+console.log(nums); // [10, 2, 33, 4] -> WRONG numeric order: [10, 2, 33, 4] sorted as strings => [10,2,33,4]... 
+// Correct numeric sort:
+nums.sort((a, b) => a - b);
+console.log(nums); // [2, 4, 10, 33]
+a-b ==> descending order 
+b-a ==> acsending order
+
+
+7. reverse()`
+What: Reverses the order of elements IN PLACE.
+Why: Used to flip the order of a list.
+Return type: array (the reversed ar`ray)
+
+let arr = [1, 2, 3];
+arr.reverse();
+console.log(arr); // [3, 2, 1]
+
+
+8. fill(value, start, end)
+What: Fills elements of an array with a static value, from start to end index.
+Why: Used to initialize or reset arrays.
+Return type: array (the modified array)
+yesle kaam garne bhaneko jun "end" paramenter chha ni tesko -1 samma for example 1,2,3,4 chha ra start 1 end 2 chha bhane 1,
+
+let arr = [1, 2, 3, 4];
+arr.fill(0, 1, 3);
+console.log(arr); // [1, 0, 0, 4]
+
+========================================================================================================================
+======= yo chai sabai non mutating method jastai original array ma kei ni farak pardaina new array bauanuchha yesle=====
+
+9. concat(arr2)
+What: Merges two or more arrays.
+Why: Used to combine arrays without changing the originals.
+Return type: array (new merged array)
+
+let a = [1, 2];
+let b = [3, 4];
+let merged = a.concat(b);
+console.log(merged); // [1, 2, 3, 4]
+console.log(a);       // [1, 2] (unchanged)
+
+
+10. slice(start, end)
+What: Extracts a portion of an array WITHOUT modifying the original.
+Why: Used to get a copy/subset of an array.
+Return type: array (new array with extracted elements, end index excluded)
+start jat abata hunxa tesko element count hunxa but end ko chai -1 samma janchha
+
+let arr = [1, 2, 3, 4, 5];
+let part = arr.slice(1, 3);
+console.log(part); // [2, 3]
+console.log(arr);  // [1, 2, 3, 4, 5] (unchanged)
+
+
+11. join(separator)
+What: Joins all array elements into a single string.
+Why: Used to convert arrays into readable strings (e.g., CSV format).
+Return type: string
+
+let arr = ["a", "b", "c"];
+console.log(arr.join("-")); // "a-b-c"
+
+
+12. flat(depth)
+What: Flattens nested arrays into a single-level array up to given depth.
+Why: Used to simplify deeply nested array structures.
+Return type: array (new flattened array)
+
+let arr = [1, [2, 3], [4, [5, 6]]];
+console.log(arr.flat());    // [1, 2, 3, 4, [5, 6]]  (depth 1 default)
+console.log(arr.flat(2));   // [1, 2, 3, 4, 5, 6]
+
+
+13. Array.isArray(value)
+What: Checks whether a given value is an array.
+Why: typeof [] returns "object", so this is the correct way to test for arrays.
+Return type: boolean
+
+console.log(Array.isArray([1,2,3])); // true
+console.log(Array.isArray("hello")); // false
+
+
+14. Array.from(iterable)
+What: Creates a new array from an array-like or iterable object.
+Why: Used to convert strings, Sets, NodeLists, etc. into real arrays.
+Return type: array
+
+let str = "abc";
+console.log(Array.from(str)); // ["a", "b", "c"]
+
+
+=== ARRAY SEARCH METHODS ===
+
+1. indexOf(item)
+What: Returns the FIRST index at which a given element is found.
+Why: Used to check position/existence of a primitive value.
+Return type: number (index, or -1 if not found)
+arko kura indexOf(searchelem, fromindex) yesko 2 ta params hunxa but euta suruko diyo bhane ni okay arko last ko optional ho 
+
+
+let arr = [10, 20, 30, 20];
+console.log(arr.indexOf(20));  // 1 (first match)
+console.log(arr.indexOf(99));  // -1 (not found)
+
+
+2. lastIndexOf(item)
+What: Returns the LAST index at which a given element is found.
+Why: Used when duplicates exist and you need the final occurrence.
+Return type: number (index, or -1 if not found)
+
+let arr = [10, 20, 30, 20];
+console.log(arr.lastIndexOf(20)); // 3  
+
+
+3. includes(item)
+What: Checks if an array contains a certain value.
+Why: Used for simple existence checks (cleaner than indexOf !== -1).
+Return type: boolean
+
+let arr = [10, 20, 30];
+console.log(arr.includes(20)); // true
+console.log(arr.includes(99)); // false
+
+4. find(callback)
+What: Returns the FIRST element that satisfies the testing function.
+Why: Used to search using a condition instead of exact value (e.g., find user by id).
+Return type: the found element (any type), or undefined if none match
+
+let users = [{id:1,name:"A"}, {id:2,name:"B"}];
+let user = users.find(u => u.id === 2);
+console.log(user); // {id:2, name:"B"}
+
+
+5. findIndex(callback)
+What: Returns the INDEX of the first element that satisfies the condition.
+Why: Used when you need the position, not the value itself (e.g., to splice it out).
+Return type: number (index, or -1 if none match)
+
+let arr = [5, 12, 8, 130];
+let index = arr.findIndex(n => n > 10);
+console.log(index); // 1
+
+
+6. findLast(callback) / findLastIndex(callback)
+What: Same as find/findIndex but searches from the END of the array.
+Why: Used when the last matching item matters more.
+Return type: element (any type) / number (index)
+if not found "undefined" in case of "findLast" and -1 in case of "findLastIndex" 
+
+let arr = [5, 12, 8, 130];
+console.log(arr.findLast(n => n > 10));      // 130
+console.log(arr.findLastIndex(n => n > 10)); // 3
+
+
+7. some(callback)
+What: Checks if AT LEAST ONE element passes the given test.
+Why: Used for validation (e.g., "does any product cost more than $100?").
+Return type: boolean
+
+let prices = [50, 80, 120];
+console.log(prices.some(p => p > 100)); // true
+
+
+8. every(callback)
+What: Checks if ALL elements pass the given test.
+Why: Used for validation (e.g., "are all users active?").
+Return type: boolean
+
+let ages = [20, 25, 30];
+console.log(ages.every(age => age >= 18)); // true
+
+
+=== ARRAY SORT (deep dive) ===
+
+sort(compareFunction)
+What: Rearranges the elements of an array IN PLACE (mutates original array).
+Why: Used to order data — alphabetically, numerically, by custom logic (price, date, etc).
+Return type: array (returns the SAME array reference, now sorted)
+
+--- DEFAULT BEHAVIOR (no compare function)   ---
+By default, sort() converts elements to STRINGS and compares UTF-16 code units.
+This means NUMBER sorting without a compare function gives wrong results.
+
+let nums = [100, 25, 8, 1];
+nums.sort();
+console.log(nums); // [1, 100, 25, 8]  <-- WRONG for numeric order!
+// Because as strings: "1" < "100" < "25" < "8"
+
+
+--- SORTING NUMBERS CORRECTLY ---
+Compare function: (a, b) => a - b
+- If result is negative -> a comes first
+- If result is positive -> b comes first
+- If result is 0        -> order unchanged
+
+let nums = [100, 25, 8, 1];
+nums.sort((a, b) => a - b); // ascending
+console.log(nums); // [1, 8, 25, 100]
+
+nums.sort((a, b) => b - a); // descending
+console.log(nums); // [100, 25, 8, 1]
+
+
+--- SORTING STRINGS ---
+Strings sort correctly by default (alphabetically), but case-sensitive
+(uppercase letters come before lowercase in ASCII).
+
+let names = ["Banana", "apple", "Cherry"];
+console.log(names.sort()); // ["Banana", "Cherry", "apple"]  (capital letters sort first)
+
+// Case-insensitive sort:
+names.sort((a, b) => a.toLowerCase().localeCompare(b.toLowerCase()));
+console.log(names); // ["apple", "Banana", "Cherry"]
+
+
+--- SORTING ARRAY OF OBJECTS ---
+Used constantly in real apps (sort users by age, products by price, etc).
+
+let users = [
+  { name: "A", age: 30 },
+  { name: "B", age: 20 },
+  { name: "C", age: 25 }
+];
+
+users.sort((a, b) => a.age - b.age); // ascending by age
+console.log(users); 
+// [{name:"B",age:20}, {name:"C",age:25}, {name:"A",age:30}]
+
+
+--- IMPORTANT NOTE ---
+sort() mutates the ORIGINAL array. If you need to keep the original unchanged,
+make a copy first using slice() or the spread operator:
+
+let original = [3, 1, 2];
+let sorted = [...original].sort((a, b) => a - b);
+console.log(original); // [3, 1, 2] (unchanged)
+console.log(sorted);   // [1, 2, 3]
+
+
+--- toSorted() (newer method, ES2023) ---
+What: Same as sort(), but does NOT mutate — returns a NEW sorted array.
+Return type: array (new array)
+
+let original = [3, 1, 2];
+let sorted = original.toSorted((a, b) => a - b);
+console.log(original); // [3, 1, 2] (unchanged)
+console.log(sorted);   // [1, 2, 3]
+
+
+=== ARRAY ITERATION METHODS ===
+
+These methods loop through array elements, but each serves a different purpose.
+
+1. forEach(callback)
+What: Executes a function once for EACH array element. Does not create a new array.
+Why: Used purely for side effects — like printing, updating a DOM element, logging.
+Return type: undefined (cannot be chained, cannot be used to build new data)
+yesko pani 3 ota parameter hunxa callback function ma (currentValue, index, array);
+
+let arr = [1, 2, 3];
+arr.forEach((item, index) => {
+  console.log(`Index ${index}: ${item}`);
+});
+// Index 0: 1
+// Index 1: 2
+// Index 2: 3
+
+
+2. map(callback)
+What: Creates a NEW array by applying a function to every element.
+Why: Used to transform data (e.g., double every number, extract a property from objects).
+Return type: array (new array, same length as original)
+yesko pani 3 ota nai hunxa arguments (currentValue, index, array);
+
+let nums = [1, 2, 3];
+let doubled = nums.map(n => n * 2);
+console.log(doubled); // [2, 4, 6]
+console.log(nums);    // [1, 2, 3] (unchanged)
+
+
+3. filter(callback)
+What: Creates a NEW array containing only elements that pass a test.
+Why: Used to select a subset of data (e.g., only active users, only even numbers).
+Return type: array (new array, possibly shorter than original)
+yesko pani 3 otai params hunchha callback ma(currentValue,index,array)
+
+let nums = [1, 2, 3, 4, 5, 6];
+let evens = nums.filter(n => n % 2 === 0);
+console.log(evens); // [2, 4, 6]
+
+
+4. reduce(callback, initialValue)
+What: Reduces the array to a SINGLE value by applying a function cumulatively.
+Why: Used for totals, sums, building objects, flattening — very versatile.
+Return type: any (whatever type your accumulator ends up as — number, object, array, string, etc.)
+
+callback params: (accumulator, currentValue, currentIndex, array)
+accumulator bhaneko chai result returned from the previous iteration
+
+let nums = [1, 2, 3, 4];
+let sum = nums.reduce((acc, curr) => acc + curr, 0);
+console.log(sum); // 10
+
+// Example: reduce to build an object (count occurrences)
+let fruits = ["apple", "banana", "apple", "orange", "banana", "apple"];
+let count = fruits.reduce((acc, fruit) => {
+  acc[fruit] = (acc[fruit] || 0) + 1;
+  return acc;
+}, {});
+console.log(count); // { apple: 3, banana: 2, orange: 1 }
+
+
+5. reduceRight(callback, initialValue)
+What: Same as reduce(), but processes the array from RIGHT to LEFT.
+Why: Used when order of accumulation matters (e.g., composing functions, building nested strings).
+Return type: any
+
+let arr = ["a", "b", "c"];
+let result = arr.reduceRight((acc, curr) => acc + curr);
+console.log(result); // "cba"   
+
+
+6. for...of loop (not a method, but common iteration syntax)
+What: Loops over VALUES of an iterable (arrays, strings, maps, sets).
+Why: Simple, readable way to loop when you just need values (not index-based like traditional for).
+Return type: N/A (control structure, doesn't return anything itself)
+
+let arr = ["x", "y", "z"];
+for (let value of arr) {
+  console.log(value);
+}
+// x
+// y
+// z
+
+
+7. entries(), keys(), values()
+What: Return Iterator objects for [index,value] pairs, indexes, or values respectively.
+Why: Used when you need both index AND value while iterating with for...of.
+Return type: Array Iterator object (must be looped through or spread into array)
+
+let arr = ["a", "b", "c"];
+for (let [index, value] of arr.entries()) {
+  console.log(index, value);
+}
+// 0 'a'
+// 1 'b'
+// 2 'c'
+
+
+=== QUICK COMPARISON TABLE ===
+Method     | Returns          | Mutates original? | Use case
+-----------|------------------|--------------------|------------------------
+forEach    | undefined        | No (unless you mutate inside) | Side effects/logging
+map        | new array        | No                 | Transform each element
+filter     | new array        | No                 | Select subset
+reduce     | single value     | No                 | Aggregate/summarize
+sort       | same array ref   | YES                | Ordering
+splice     | removed items    | YES                | Insert/remove/replace
+slice      | new array        | No                 | Extract copy

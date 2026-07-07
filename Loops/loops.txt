@@ -1,0 +1,219 @@
+=== FOR LOOP ===
+
+What: Repeats a block of code a specific number of times, using a counter.
+Why: Used when you know (or can calculate) exactly how many times to loop —
+     e.g., iterating through an array by index.
+Return type: (it's a control structure, doesn't return a value itself)
+
+Syntax:
+for (initialization; condition; increment/decrement) {
+  // code to repeat
+}
+
+Example:
+for (let i = 0; i < 5; i++) {
+  console.log(i);
+}
+// 0
+// 1
+// 2
+// 3
+// 4
+
+Explanation of parts:
+- let i = 0     -> runs ONCE at the start (initialization)
+- i < 5         -> checked BEFORE each iteration; loop continues while true
+- i++           -> runs AFTER each iteration (increment)
+
+
+=== LOOPING THROUGH AN ARRAY ===
+let fruits = ["apple", "banana", "mango"];
+for (let i = 0; i < fruits.length; i++) {
+  console.log(fruits[i]);
+}
+// apple
+// banana
+// mango
+
+
+=== FOR...OF LOOP (variant, loops over VALUES) ===
+What: Iterates directly over the VALUES of an iterable (array, string, Map, Set).
+Why: Cleaner syntax when you don't need the index.
+Return type: N/A
+
+let fruits = ["apple", "banana"];
+for (let fruit of fruits) {
+  console.log(fruit);
+}
+// apple
+// banana
+
+
+=== FOR...IN LOOP (variant, loops over KEYS) ===
+What: Iterates over the ENUMERABLE KEYS/PROPERTIES of an object (or indexes of an array).
+Why: Used specifically for looping through OBJECT properties (not recommended for arrays).
+Return type: N/A
+
+let person = { name: "Yuyutsu", age: 21 };
+for (let key in person) {
+  console.log(key, person[key]);
+}
+// name Yuyutsu
+// age 21
+
+
+=== NESTED FOR LOOPS ===
+What: A loop inside another loop — used for multi-dimensional data (grids, matrices).
+
+for (let i = 1; i <= 3; i++) {
+  for (let j = 1; j <= 3; j++) {
+    console.log(`${i} x ${j} = ${i*j}`);
+  }
+}
+
+
+=== WHILE LOOP ===
+
+What: Repeats a block of code AS LONG AS a given condition remains true.
+Why: Used when you DON'T know in advance how many times you'll loop —
+     e.g., waiting for user input, processing until a condition changes.
+Return type: N/A (control structure)
+
+Syntax:
+while (condition) {
+  // code to repeat
+}
+
+Example:
+let i = 0;
+while (i < 5) {
+  console.log(i);
+  i++; // IMPORTANT: must update the condition variable, or infinite loop!
+}
+// 0
+// 1
+// 2
+// 3
+// 4
+
+WARNING: Forgetting to update the loop variable causes an INFINITE LOOP
+that will crash/freeze your program:
+// let i = 0;
+// while (i < 5) {
+//   console.log(i); // never increments i -> runs forever!
+// }
+
+
+=== DO...WHILE LOOP (variant) ===
+What: Same as while, but the code block runs AT LEAST ONCE before checking
+      the condition (condition is checked AFTER the first execution).
+Why: Used when you need guaranteed first execution regardless of condition
+     (e.g., showing a menu at least once, then asking "run again?").
+Return type: N/A
+
+let i = 10;
+do {
+  console.log(i); // runs once even though condition is false from the start
+  i++;
+} while (i < 5);
+// 10  (printed once, then loop exits because condition is false)
+
+Compare with regular while (condition checked FIRST, may never run):
+let j = 10;
+while (j < 5) {
+  console.log(j); // never runs, because condition is false immediately
+  j++;
+}
+
+
+=== PRACTICAL USE CASE ===
+// Simulating waiting for a random number to match
+let num;
+let attempts = 0;
+while (num !== 7) {
+  num = Math.floor(Math.random() * 10);
+  attempts++;
+}
+console.log(`Found 7 after ${attempts} attempts`);
+
+
+========================================================================================
+========================================================================================
+========================================================================================
+
+=== LOOP CONTROL STATEMENTS ===
+
+1. BREAK
+What: Immediately EXITS the current loop entirely, skipping remaining iterations.
+Why: Used when you've found what you need and don't need to keep looping
+     (e.g., stop searching once found — performance optimization).
+Return type: N/A (control statement)
+
+for (let i = 0; i < 10; i++) {
+  if (i === 5) {
+    break; // exits loop completely when i reaches 5
+  }
+  console.log(i);
+}
+// 0
+// 1
+// 2
+// 3
+// 4
+// (stops here, 5 onward never printed)
+
+
+2. CONTINUE
+What: SKIPS the current iteration and moves to the NEXT one (doesn't exit the loop).
+Why: Used to skip specific values while still processing the rest
+     (e.g., skip even numbers, skip invalid data).
+Return type: N/A (control statement)
+
+for (let i = 0; i < 10; i++) {
+  if (i % 2 === 0) {
+    continue; // skips even numbers, goes to next iteration
+  }
+  console.log(i);
+}
+// 1
+// 3
+// 5
+// 7
+// 9
+
+
+3. LABELED STATEMENTS (used with break/continue in nested loops)
+What: A named identifier placed before a loop, allowing break/continue to
+      target an OUTER loop from within a nested (inner) loop.
+Why: Used when a simple break/continue would only affect the innermost loop,
+     but you need to control an outer loop.
+Return type: N/A
+
+outerLoop: for (let i = 0; i < 3; i++) {
+  for (let j = 0; j < 3; j++) {
+    if (j === 1) {
+      continue outerLoop; // skips to next iteration of OUTER loop, not inner
+    }
+    console.log(`i=${i}, j=${j}`);
+  }
+}
+// i=0, j=0
+// i=1, j=0
+// i=2, j=0
+
+
+4. BREAK IN SWITCH STATEMENTS (bonus, related control usage)
+What: Prevents "fall-through" to the next case in a switch statement.
+(Covered in more detail in switch-case.txt)
+
+switch (2) {
+  case 1:
+    console.log("one");
+    break;
+  case 2:
+    console.log("two"); // this runs
+    break;              // stops here, doesn't fall into case 3
+  case 3:
+    console.log("three");
+    break;
+}

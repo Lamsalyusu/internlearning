@@ -1,0 +1,112 @@
+=== PROMISES ===
+
+What is promise:
+A Promise is an object that represents the eventual result of an asynchronous operation. Think of it as a placeholder/IOU for a value that
+isn't available yet, but will be at some point in the future — either
+successfully (resolved) or with an error (rejected).
+
+Promise ko 3 ota state hunchha 
+1. PENDING   -> initial state, operation not yet completed, kaam hudai chha ajhai(eg: Downloading......)
+2. FULFILLED -> operation completed successfully (has a resolved value) kaam bhayo (eg:download complete......)
+3. REJECTED  -> operation failed (has a reason/error) kaam bhayena (Network error)
+
+Once a promise is fulfilled or rejected, it is "SETTLED" and cannot change
+state again.
+
+
+=== CREATING A PROMISE ===
+Syntax: new Promise((resolve, reject) => { ... })
+- resolve(value) -> call this when the operation succeeds
+- reject(error)  -> call this when the operation fails
+
+let myPromise = new Promise((resolve, reject) => {
+  let success = true;
+  
+  setTimeout(() => {
+    if (success) {
+      resolve("Operation successful!"); // moves promise to FULFILLED state
+    } else {
+      reject("Operation failed!");      // moves promise to REJECTED state
+    }
+  }, 1000);
+});
+
+CONSUMING A PROMISE: .then() / .catch() / .finally() 
+1. .then(onFulfilled, onRejected)
+What: Runs when the promise is FULFILLED (resolved successfully).
+Return type: a NEW Promise (this is why .then() calls can be CHAINED)
+
+myPromise.then((result) => {
+  console.log(result); // "Operation successful!"
+});
+
+2. .catch(onRejected)
+What: Runs when the promise is REJECTED (an error occurred).
+Return type: a NEW Promise
+
+myPromise.catch((error) => {
+  console.log(error); // runs only if promise was rejected
+});
+
+3. .finally()
+What: Runs REGARDLESS of whether the promise was fulfilled or rejected.
+Why: Used for cleanup code (e.g., hiding a loading spinner).
+
+myPromise
+  .then(result => console.log(result))
+  .catch(error => console.log(error))
+  .finally(() => console.log("Done, either way"));
+
+
+=== CHAINING PROMISES ===
+WHAT: Each .then() returns a new promise, so you can chain multiple
+      asynchronous steps together instead of nesting them.
+WHY: Avoids "callback hell" (deeply nested, unreadable code).
+
+fetchUser()
+  .then(user => fetchPosts(user.id))   // runs after fetchUser resolves
+  .then(posts => fetchComments(posts[0].id)) // runs after fetchPosts resolves
+  .then(comments => console.log(comments))
+  .catch(error => console.log("Error in chain:", error)); 
+  // .catch() catches an error from ANY step above it
+
+
+=== STATIC PROMISE METHODS ===
+
+1. Promise.all(arrayOfPromises)
+What: Waits for ALL promises to resolve. If ANY one rejects, the whole thing
+      rejects immediately with that error.
+Return type: Promise that resolves to an ARRAY of all results (in order)
+
+Promise.all([fetchA(), fetchB(), fetchC()])
+  .then(([resultA, resultB, resultC]) => {
+    console.log(resultA, resultB, resultC);
+  })
+  .catch(error => console.log("One of them failed:", error));
+
+2. Promise.allSettled(arrayOfPromises)
+What: Waits for ALL promises to complete, REGARDLESS of success/failure —
+      never rejects.
+Return type: Promise resolving to an array of objects like:
+             { status: "fulfilled", value: ... } or { status: "rejected", reason: ... }
+
+Promise.allSettled([fetchA(), fetchB()])
+  .then(results => console.log(results));
+  // [{status:"fulfilled",value:...}, {status:"rejected",reason:...}]
+
+3. Promise.race(arrayOfPromises)
+What: Returns as soon as the FIRST promise settles (whether fulfilled or rejected).
+Return type: Promise (same state/value as whichever settled first)
+
+Promise.race([slowFetch(), fastFetch()])
+  .then(result => console.log("First to finish:", result));
+
+4. Promise.any(arrayOfPromises)
+What: Returns as soon as the FIRST promise FULFILLS (ignores rejections
+      unless ALL promises reject).
+Return type: Promise (resolves with first successful value, or rejects only
+             if ALL promises fail)
+
+Promise.any([fetchA(), fetchB()])
+  .then(result => console.log("First success:", result))
+  .catch(error => console.log("All failed:", error));

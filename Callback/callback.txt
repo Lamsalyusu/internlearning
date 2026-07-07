@@ -1,0 +1,95 @@
+=== CALLBACKS ===
+
+WHAT IS IT:
+A callback is simply a FUNCTION passed as an ARGUMENT to another function,
+to be executed (called back) LATER — either immediately after some
+synchronous logic, or after an asynchronous operation completes.
+
+WHY IT'S USED:
+Functions are "first-class citizens" in JavaScript, meaning they can be
+passed around like any other value (numbers, strings). Callbacks let you
+customize what happens after a task finishes, or let a function's behavior
+be controlled by whoever calls it. They're the ORIGINAL way JS handled
+asynchronous operations, before Promises and async/await existed.
+
+RETURN TYPE:
+A callback itself can return anything, depending on what you write inside it
+— but the function it's passed TO usually just calls it, and doesn't always
+use its return value. Many callback-based async functions (like setTimeout)
+return undefined; the "output" happens via the callback's side effects instead.
+
+
+=== SYNCHRONOUS CALLBACK EXAMPLE ===
+What: A callback that runs immediately, in order, as part of normal code execution.
+
+function greet(name, callback) {
+  console.log("Hi " + name);
+  callback(); // called immediately after the line above
+}
+
+greet("Yuyutsu", function() {
+  console.log("Callback executed!");
+});
+// Hi Yuyutsu
+// Callback executed!
+
+
+=== CALLBACKS IN ARRAY METHODS (you already use these!) ===
+map, filter, forEach, reduce all take callback functions:
+
+let nums = [1, 2, 3];
+nums.forEach(function(num) { // this function is a callback
+  console.log(num);
+});
+
+
+=== ASYNCHRONOUS CALLBACK EXAMPLE ===
+What: A callback that runs LATER, after some async operation (timer, file 
+      read, network request) completes.
+
+console.log("Start");
+setTimeout(function() { // this function is the callback
+  console.log("This runs after 2 seconds");
+}, 2000);
+console.log("End");
+
+// Output order:
+// Start
+// End
+// (2 seconds later)
+// This runs after 2 seconds
+
+
+=== ERROR-FIRST CALLBACK PATTERN (Node.js convention) ===
+What: A common convention in Node.js where the callback's FIRST parameter
+      is reserved for an error (null if no error), and the SECOND parameter
+      is the actual result/data.
+Why: Standardizes how success and failure are both handled through one callback.
+
+const fs = require("fs");
+
+fs.readFile("example.txt", "utf8", function(err, data) {
+  if (err) {
+    console.log("Error reading file:", err.message);
+    return;
+  }
+  console.log("File content:", data);
+});
+// callback signature: (error, result) => { ... }
+
+
+=== THE PROBLEM: "CALLBACK HELL" ===
+What: When multiple asynchronous operations depend on each other, nesting
+      callbacks inside callbacks creates deeply indented, hard-to-read,
+      hard-to-maintain code — often called the "pyramid of doom".
+Why it matters: This is the exact problem Promises and async/await were
+      created to solve.
+
+getUser(1, function(user) {
+  getPosts(user.id, function(posts) {
+    getComments(posts[0].id, function(comments) {
+      console.log(comments);
+      // imagine 3 more nested levels... unreadable and hard to debug
+    });
+  });
+});

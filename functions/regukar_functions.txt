@@ -1,0 +1,253 @@
+=======FUNCTIONS HAI FUNCTIONS YESMA CHAIII==========================
+What: A named, reusable block of code defined using the `function` keyword.
+Why: Used to organize logic into reusable units, avoid code repetition.
+Return type: depends on what's inside — whatever the `return` statement gives back.
+             If there's no return statement, the function returns undefined.
+
+Syntax:
+function functionName(parameters) {
+  // logic
+  return value;
+}
+
+Example:
+function add(a, b) {
+  return a + b;
+}
+let result = add(5, 3);
+console.log(result);       // 8
+console.log(typeof result);// "number"
+
+
+Example with no return:
+function greet(name) {
+  console.log("Hello " + name);
+}
+let output = greet("Yuyutsu"); // logs "Hello Yuyutsu"
+console.log(output);            // undefined (because greet has no return statement)
+
+
+=== KEY FEATURE: HOISTING ===
+What: Function declarations are "hoisted" — moved to the top of their scope
+      during compilation, so they can be called BEFORE they're defined in code.
+Why it matters: Unlike function expressions/arrow functions, this works:
+
+sayHi(); // works! logs "Hi"
+function sayHi() {
+  console.log("Hi");
+}
+
+
+=== FUNCTION EXPRESSION (related concept) ===
+What: Assigning an anonymous (or named) function to a variable.
+Why: Useful when passing functions as values, or when hoisting isn't wanted.
+Return type: same as regular functions
+
+const multiply = function(a, b) {
+  return a * b;
+};
+console.log(multiply(4, 5)); // 20
+
+NOTE: Function expressions are NOT hoisted the same way:
+sayHello(); // ERROR: Cannot access 'sayHello' before initialization
+const sayHello = function() { console.log("Hello"); };
+
+
+=== `this` KEYWORD IN REGULAR FUNCTIONS ===
+What: Refers to the object that is calling the function (dynamic context).
+Why it matters: This is a key difference vs arrow functions (see arrow-functions.txt).
+
+const person = {
+  name: "Yuyutsu",
+  greet: function() {
+    console.log(this.name); // "this" refers to "person" object here
+  }
+};
+person.greet(); // "Yuyutsu"
+
+
+=== DEFAULT PARAMETERS ===
+What: Allows a parameter to have a fallback value if none is passed.
+Return type: uses default only if argument is `undefined`
+
+function greet(name = "Guest") {
+  return `Hello, ${name}`;
+}
+console.log(greet());          // "Hello, Guest"
+console.log(greet("Yuyutsu")); // "Hello, Yuyutsu"
+
+
+=== REST PARAMETERS ===
+What: Collects all remaining arguments into an array.
+Return type: array
+
+function sum(...numbers) {
+  return numbers.reduce((acc, n) => acc + n, 0);
+}
+console.log(sum(1, 2, 3, 4)); // 10
+
+
+
+======================================================================================================
+======================================================================================================
+======================================================================================================
+
+=== ARROW FUNCTIONS ===
+
+What: A shorter syntax for writing function expressions, introduced in ES6.
+Why: Used for concise code, especially for callbacks, and for NOT rebinding `this`.
+Return type: same as regular functions — whatever the return statement provides
+             (or implicit return, explained below)
+
+Basic Syntax:
+const functionName = (parameters) => {
+  // logic
+  return value;
+};
+
+Example:
+const add = (a, b) => {
+  return a + b;
+};
+console.log(add(5, 3)); // 8
+
+
+=== IMPLICIT RETURN (shorthand) ===
+What: If the function body is a SINGLE expression, you can omit the curly braces
+      and the `return` keyword — it returns automatically.
+Return type: same as the expression's type
+
+const add = (a, b) => a + b;
+console.log(add(5, 3)); // 8 (implicitly returned, no "return" keyword needed)
+
+const square = x => x * x; // single parameter doesn't need parentheses (optional)
+console.log(square(5)); // 25
+
+// Returning an OBJECT implicitly requires wrapping in parentheses:
+const makeUser = (name, age) => ({ name: name, age: age });
+console.log(makeUser("Yuyutsu", 21)); // { name: "Yuyutsu", age: 21 }
+
+
+=== KEY DIFFERENCE: `this` BINDING ===
+What: Arrow functions do NOT have their own `this`. They inherit `this` from
+      the SURROUNDING (lexical) scope where they were defined.
+Why it matters: This fixes a common bug in regular functions used as callbacks.
+
+const person = {
+  name: "Yuyutsu",
+  greet: function() {
+    setTimeout(() => {
+      console.log(this.name); // "Yuyutsu" -- arrow function inherits `this` from greet()
+    }, 1000);
+  }
+};
+person.greet();
+
+// Compare to regular function (BUGGY version):
+const person2 = {
+  name: "Yuyutsu",
+  greet: function() {
+    setTimeout(function() {
+      console.log(this.name); // undefined -- `this` refers to global/window object here, not person2
+    }, 1000);
+  }
+};
+person2.greet();
+
+
+=== NO `arguments` OBJECT ===
+What: Arrow functions don't have their own `arguments` object (use rest params instead).
+
+const regularFn = function() {
+  console.log(arguments); // works, lists all args passed
+};
+regularFn(1, 2, 3); // [Arguments] { '0': 1, '1': 2, '2': 3 }
+
+const arrowFn = (...args) => {
+  console.log(args); // must use rest parameter instead
+};
+arrowFn(1, 2, 3); // [1, 2, 3]
+
+
+=== WHEN TO USE WHICH ===
+- Use arrow functions for: short callbacks (map, filter, setTimeout), 
+  situations where you want to preserve outer `this`.
+- Use regular functions for: object methods, situations needing their own `this`,
+  or when you need the `arguments` object.
+
+
+====================================================================================================================
+====================================================================================================================
+====================================================================================================================
+
+=== SHORTHAND FUNCTIONS (Object Method Shorthand & related shortcuts) ===
+
+1. OBJECT METHOD SHORTHAND (ES6)
+What: A shorter way to define a function as a property of an object,
+      without needing the `function` keyword.
+Why: Used to make object literals cleaner and more readable.
+Return type: same as any function — depends on internal return statement
+
+// OLD WAY:
+const obj1 = {
+  greet: function() {
+    return "Hello!";
+  }
+};
+
+// SHORTHAND WAY:
+const obj2 = {
+  greet() {
+    return "Hello!";
+  }
+};
+
+console.log(obj1.greet()); // "Hello!"
+console.log(obj2.greet()); // "Hello!" (identical behavior, cleaner syntax)
+
+
+2. SHORTHAND PROPERTY NAMES (related ES6 feature, often used alongside functions)
+What: When a variable name matches the desired object key name, you can skip
+      writing `key: value` and just write the variable name once.
+Why: Reduces repetition when building objects from existing variables.
+
+let name = "Yuyutsu";
+let age = 21;
+
+// OLD WAY:
+const user1 = { name: name, age: age };
+
+// SHORTHAND WAY:
+const user2 = { name, age };
+
+console.log(user2); // { name: "Yuyutsu", age: 21 }
+
+
+3. IMPLICIT RETURN ARROW FUNCTIONS (also a "shorthand", covered in arrow-functions.txt)
+const double = n => n * 2;
+console.log(double(5)); // 10
+
+
+4. IMMEDIATELY INVOKED FUNCTION EXPRESSION (IIFE) — bonus shorthand pattern
+What: A function that runs immediately as soon as it's defined.
+Why: Used to create a private scope, avoid polluting global variables.
+Return type: whatever is returned, or undefined
+
+(function() {
+  console.log("This runs immediately!");
+})();
+
+// Arrow function IIFE:
+(() => {
+  console.log("This also runs immediately!");
+})();
+
+
+5. COMPUTED PROPERTY NAMES (bonus, used with shorthand)
+What: Allows using a variable/expression as an object's key name dynamically.
+
+let key = "score";
+const obj = {
+  [key]: 100
+};
+console.log(obj); // { score: 100 }

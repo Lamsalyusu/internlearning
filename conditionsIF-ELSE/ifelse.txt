@@ -1,0 +1,201 @@
+=== IF...ELSE STATEMENTS ===
+
+What: Executes different blocks of code depending on whether a condition is
+      true or false.
+Why: Used for decision-making/branching logic — the foundation of program flow control.
+Return type: N/A (control structure, doesn't return a value; it's not an expression)
+
+1. BASIC IF
+if (condition) {
+  // runs only if condition is true
+}
+
+let age = 20;
+if (age >= 18) {
+  console.log("You are an adult");
+}
+// "You are an adult"
+
+
+2. IF...ELSE
+if (condition) {
+  // runs if true
+} else {
+  // runs if false
+}
+
+let age = 15;
+if (age >= 18) {
+  console.log("Adult");
+} else {
+  console.log("Minor");
+}
+// "Minor"
+
+
+3. IF...ELSE IF...ELSE (multiple conditions)
+let score = 75;
+if (score >= 90) {
+  console.log("Grade: A");
+} else if (score >= 75) {
+  console.log("Grade: B"); // this runs
+} else if (score >= 50) {
+  console.log("Grade: C");
+} else {
+  console.log("Grade: F");
+}
+
+
+4. NESTED IF STATEMENTS
+let age = 25;
+let hasLicense = true;
+
+if (age >= 18) {
+  if (hasLicense) {
+    console.log("Can drive");
+  } else {
+    console.log("Needs a license first");
+  }
+} else {
+  console.log("Too young to drive");
+}
+
+
+5. TERNARY OPERATOR (shorthand for simple if-else)
+What: A one-line conditional EXPRESSION (unlike if-else, this DOES return a value).
+Why: Used for concise conditional assignments.
+Return type: whatever type the chosen branch evaluates to
+
+condition ? valueIfTrue : valueIfFalse
+
+let age = 20;
+let status = age >= 18 ? "Adult" : "Minor";
+console.log(status); // "Adult"
+
+// Can be chained (though readability suffers with too many):
+let score = 75;
+let grade = score >= 90 ? "A" : score >= 75 ? "B" : score >= 50 ? "C" : "F";
+console.log(grade); // "B"
+
+
+=== TRUTHY/FALSY IN CONDITIONS (important) ===
+Any value can be used in an if condition — JS converts it to boolean internally.
+Falsy: false, 0, "", null, undefined, NaN
+Everything else: truthy
+
+if ("hello") {
+  console.log("This runs, because non-empty strings are truthy");
+}
+
+if (0) {
+  console.log("This will NOT run, because 0 is falsy");
+}
+
+
+
+=================================================================================================================
+=================================================================================================================
+
+=== SWITCH CASE ===
+
+What: An alternative to multiple if-else-if statements, used to compare
+      ONE value against MULTIPLE possible exact matches.
+Why: Used when checking a single variable against many discrete values —
+     more readable than a long if-else-if chain in that scenario.
+Return type: N/A (control structure)
+
+Syntax:
+switch (expression) {
+  case value1:
+    // code
+    break;
+  case value2:
+    // code
+    break;
+  default:
+    // code if no case matches
+}
+
+Example:
+let day = 3;
+switch (day) {
+  case 1:
+    console.log("Monday");
+    break;
+  case 2:
+    console.log("Tuesday");
+    break;
+  case 3:
+    console.log("Wednesday"); // this runs
+    break;
+  default:
+    console.log("Invalid day");
+}
+
+
+=== IMPORTANT: WHY `break` MATTERS ===
+What: Without break, execution "falls through" to the NEXT case,
+      running its code too, even if it doesn't match.
+Why it matters: This is a common source of bugs for beginners.
+
+let fruit = "apple";
+switch (fruit) {
+  case "apple":
+    console.log("It's an apple"); // this runs
+  case "banana":
+    console.log("It's a banana"); // this ALSO runs (fall-through, no break above!)
+    break;
+  default:
+    console.log("Unknown fruit");
+}
+// Output:
+// It's an apple
+// It's a banana
+
+
+=== INTENTIONAL FALL-THROUGH (valid use case) ===
+What: Sometimes fall-through is used INTENTIONALLY to group multiple cases
+      that should run the same code.
+
+let day = "Saturday";
+switch (day) {
+  case "Saturday":
+  case "Sunday":
+    console.log("It's the weekend!"); // runs for BOTH Saturday and Sunday
+    break;
+  default:
+    console.log("It's a weekday");
+}
+
+
+=== DEFAULT CASE ===
+What: Runs if NO case matches the expression (similar to "else" in if-else).
+Why: Used as a fallback/catch-all.
+Note: default doesn't have to be last, but it's conventional to place it there.
+
+let color = "purple";
+switch (color) {
+  case "red":
+    console.log("Stop");
+    break;
+  case "green":
+    console.log("Go");
+    break;
+  default:
+    console.log("Unknown color"); // this runs
+}
+
+
+=== SWITCH USES STRICT EQUALITY (===) ===
+What: Case matching uses strict comparison, no type coercion.
+
+let value = "5";
+switch (value) {
+  case 5: // number 5, will NOT match string "5"
+    console.log("Number 5");
+    break;
+  case "5": // this matches
+    console.log("String 5"); // this runs
+    break;
+}
+

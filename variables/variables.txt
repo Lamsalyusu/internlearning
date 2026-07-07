@@ -1,0 +1,183 @@
+=== PRIMITIVE DATATYPES ===
+
+1. STRING
+What: Represents textual data, sequence of characters.
+Why: Used to store and manipulate text (names, messages, etc).
+Return type: typeof "hello" => "string"
+
+Code:
+let name = "Yuyutsu";
+console.log(typeof name); // "string"
+
+Common String Methods:
+- length          -> returns number (count of characters)
+- toUpperCase()   -> returns string (all caps)
+- toLowerCase()   -> returns string (all lowercase)
+- trim()          -> returns string (removes whitespace from ends)
+- slice(start,end)-> returns string (extracted portion)
+- substring(start,end) -> returns string
+- split(separator)-> returns array (splits string into array)
+- includes(str)   -> returns boolean (true/false if substring exists)
+- replace(a,b)    -> returns string (replaces first match)
+- indexOf(str)    -> returns number (index of match, -1 if not found)
+- charAt(index)   -> returns string (single character)
+- concat(str)     -> returns string (joins strings)
+
+Example:
+let str = "  Hello World  ";
+console.log(str.trim());          // "Hello World"   (string)
+console.log(str.trim().length);   // 11              (number)
+console.log(str.toUpperCase());   // "  HELLO WORLD  " (string)
+console.log(str.includes("World"));// true            (boolean)
+console.log(str.trim().split(" "));// ["Hello","World"] (array)
+
+
+2. NUMBER
+What: Represents both integer and floating-point numbers.
+Why: Used for math operations, counting, calculations.
+Return type: typeof 5 => "number"
+
+Code:
+let age = 21;
+let price = 99.99;
+console.log(typeof age); // "number"
+
+Common Number Methods:
+- toFixed(n)      -> returns string (rounds to n decimals)
+- toString()      -> returns string (converts number to string)
+- Number.isInteger(x) -> returns boolean
+- parseInt(str)   -> returns number (parses string to integer)
+- parseFloat(str) -> returns number (parses string to decimal)
+
+Example:
+let num = 5.6789;
+console.log(num.toFixed(2));       // "5.68" (string, NOT number!)
+console.log(Number.isInteger(5));  // true
+console.log(parseInt("42px"));     // 42
+
+
+3. BOOLEAN
+What: Represents logical value true or false.
+Why: Used in conditions, comparisons, flags/toggles.
+Return type: typeof true => "boolean"
+
+Code:
+let isLoggedIn = true;
+console.log(typeof isLoggedIn); // "boolean"
+
+
+4. UNDEFINED
+What: A variable that has been declared but not assigned a value.
+Why: JS automatically assigns this to unset variables.
+Return type: typeof undefinedVar => "undefined"
+
+Code:
+let x;
+console.log(x); // undefined
+console.log(typeof x); // "undefined"
+
+
+5. NULL
+What: Represents intentional "no value" or empty value.
+Why: Used when you want to explicitly say "this has no value".
+Return type: typeof null => "object" (this is a known JS quirk/bug)
+
+Code:
+let user = null;
+console.log(typeof user); // "object" (historical bug in JS, but memorize it)
+
+
+6. SYMBOL
+What: A unique and immutable value, often used as object property keys to avoid naming collisions.
+Why: Used in advanced scenarios (e.g., defining hidden/unique object keys).
+Return type: typeof Symbol() => "symbol"
+
+Code:
+let id = Symbol("id");
+console.log(typeof id); // "symbol"
+
+
+7. BIGINT
+What: Represents integers larger than Number.MAX_SAFE_INTEGER (2^53 -1).
+Why: Used for very large number calculations (crypto, precise IDs).
+Return type: typeof 10n => "bigint"
+
+Code:
+let bigNumber = 1234567890123456789012345n;
+console.log(typeof bigNumber); // "bigint"
+
+
+=== NON-PRIMITIVE (REFERENCE) DATATYPES ===
+
+1. OBJECT
+What: A collection of key-value pairs, used to store structured/related data.
+Why: Used to represent real-world entities (a user, a product, etc).
+Return type: typeof {} => "object"
+
+Code:
+let person = {
+  name: "Yuyutsu",
+  age: 21,
+  isStudent: true
+};
+console.log(typeof person); // "object"
+console.log(person.name);   // "Yuyutsu"
+
+Difference from primitives: Objects are stored by REFERENCE (memory address),
+not by VALUE. So copying an object copies the reference, not the actual data.
+
+let a = { x: 1 };
+let b = a;
+b.x = 100;
+console.log(a.x); // 100 (because a and b point to same object in memory)
+
+
+2. ARRAY
+What: An ordered, list-like object used to store multiple values in a single variable.
+Why: Used when you need to store a collection of similar items (list of names, numbers).
+Return type: typeof [] => "object" (Arrays are technically objects)
+              Array.isArray([]) => true (correct way to check for array)
+
+Code:
+let fruits = ["apple", "banana", "mango"];
+console.log(typeof fruits);        // "object"
+console.log(Array.isArray(fruits));// true
+
+
+3. FUNCTION
+What: A reusable block of code that performs a task, can take input, and return output.
+Why: Used to avoid repeating code, organize logic.
+Return type: typeof function(){} => "function"
+
+Code:
+function greet() { return "Hello"; }
+console.log(typeof greet); // "function"
+
+
+=== KEY DIFFERENCE: PRIMITIVE vs NON-PRIMITIVE ===
+- Primitive: stored by VALUE, immutable, compared by value.
+- Non-Primitive: stored by REFERENCE, mutable, compared by reference (memory address).
+
+Example:
+let p1 = 5;
+let p2 = p1;
+p2 = 10;
+console.log(p1); // 5 (unaffected, because primitives copy by value)
+
+let o1 = { val: 5 };
+let o2 = o1;
+o2.val = 10;
+console.log(o1.val); // 10 (affected, because objects copy by reference)
+
+
+VARIABLE DECLARATION KEYWORDS (bonus, relevant to "variables") ===
+- var   -> function-scoped, can be re-declared, hoisted (old way, avoid using)
+- let   -> block-scoped, can be reassigned, NOT re-declared in same scope
+- const -> block-scoped, CANNOT be reassigned (but object/array contents can still change)
+
+Code:
+const arr = [1,2,3];
+arr.push(4); // allowed! we're not reassigning arr, just mutating it
+console.log(arr); // [1,2,3,4]
+
+arr = [5,6]; // ERROR: Assignment to constant variable.
