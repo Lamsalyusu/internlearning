@@ -52,20 +52,6 @@ NOTE: Function expressions are NOT hoisted the same way:
 sayHello(); // ERROR: Cannot access 'sayHello' before initialization
 const sayHello = function() { console.log("Hello"); };
 
-
-=== `this` KEYWORD IN REGULAR FUNCTIONS ===
-What: Refers to the object that is calling the function (dynamic context).
-Why it matters: This is a key difference vs arrow functions (see arrow-functions.txt).
-
-const person = {
-  name: "Yuyutsu",
-  greet: function() {
-    console.log(this.name); // "this" refers to "person" object here
-  }
-};
-person.greet(); // "Yuyutsu"
-
-
 === DEFAULT PARAMETERS ===
 What: Allows a parameter to have a fallback value if none is passed.
 Return type: uses default only if argument is `undefined`
@@ -75,7 +61,6 @@ function greet(name = "Guest") {
 }
 console.log(greet());          // "Hello, Guest"
 console.log(greet("Yuyutsu")); // "Hello, Yuyutsu"
-
 
 === REST PARAMETERS ===
 What: Collects all remaining arguments into an array.
@@ -127,32 +112,6 @@ console.log(square(5)); // 25
 const makeUser = (name, age) => ({ name: name, age: age });
 console.log(makeUser("Yuyutsu", 21)); // { name: "Yuyutsu", age: 21 }
 
-
-=== KEY DIFFERENCE: `this` BINDING ===
-What: Arrow functions do NOT have their own `this`. They inherit `this` from
-      the SURROUNDING (lexical) scope where they were defined.
-Why it matters: This fixes a common bug in regular functions used as callbacks.
-
-const person = {
-  name: "Yuyutsu",
-  greet: function() {
-    setTimeout(() => {
-      console.log(this.name); // "Yuyutsu" -- arrow function inherits `this` from greet()
-    }, 1000);
-  }
-};
-person.greet();
-
-// Compare to regular function (BUGGY version):
-const person2 = {
-  name: "Yuyutsu",
-  greet: function() {
-    setTimeout(function() {
-      console.log(this.name); // undefined -- `this` refers to global/window object here, not person2
-    }, 1000);
-  }
-};
-person2.greet();
 
 
 === NO `arguments` OBJECT ===

@@ -182,29 +182,7 @@ for (let i = 0; i < 10; i++) {
 // 9
 
 
-3. LABELED STATEMENTS (used with break/continue in nested loops)
-What: A named identifier placed before a loop, allowing break/continue to
-      target an OUTER loop from within a nested (inner) loop.
-Why: Used when a simple break/continue would only affect the innermost loop,
-     but you need to control an outer loop.
-Return type: N/A
-
-outerLoop: for (let i = 0; i < 3; i++) {
-  for (let j = 0; j < 3; j++) {
-    if (j === 1) {
-      continue outerLoop; // skips to next iteration of OUTER loop, not inner
-    }
-    console.log(`i=${i}, j=${j}`);
-  }
-}
-// i=0, j=0
-// i=1, j=0
-// i=2, j=0
-
-
-4. BREAK IN SWITCH STATEMENTS (bonus, related control usage)
-What: Prevents "fall-through" to the next case in a switch statement.
-(Covered in more detail in switch-case.txt)
+ REAK IN SWITCH STATEMENTS 
 
 switch (2) {
   case 1:

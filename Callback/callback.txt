@@ -60,23 +60,6 @@ console.log("End");
 // This runs after 2 seconds
 
 
-=== ERROR-FIRST CALLBACK PATTERN (Node.js convention) ===
-What: A common convention in Node.js where the callback's FIRST parameter
-      is reserved for an error (null if no error), and the SECOND parameter
-      is the actual result/data.
-Why: Standardizes how success and failure are both handled through one callback.
-
-const fs = require("fs");
-
-fs.readFile("example.txt", "utf8", function(err, data) {
-  if (err) {
-    console.log("Error reading file:", err.message);
-    return;
-  }
-  console.log("File content:", data);
-});
-// callback signature: (error, result) => { ... }
-
 
 === THE PROBLEM: "CALLBACK HELL" ===
 What: When multiple asynchronous operations depend on each other, nesting

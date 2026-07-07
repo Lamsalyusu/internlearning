@@ -442,14 +442,63 @@
 // }
 
 
-async function getUser(){
-    try{
-        let response = await fetch("https://api.example.com/user/1");
-        let data = await response.json(); //json also returns a promise so we await it too
-        console.log(data);
-        return data;
-    }catch (error){
-        console.log(error.message);
-    }
-}
-getUser();
+// async function getUser(){
+//     try{
+//         let response = await fetch("https://api.example.com/user/1");
+//         let data = await response.json(); //json also returns a promise so we await it too
+//         console.log(data);
+//         return data;
+//     }catch (error){
+//         console.log(error.message);
+//     }
+// }
+// getUser();
+
+// async function loadData() {
+//   console.log('loadData: start');
+//   const a = await taskA(); // pauses HERE for 3 seconds
+//   console.log('loadData: got a =', a);
+// }
+
+// loadData(); // called first
+// console.log('main: this runs immediately'); // doesn't wait for loadData
+
+// setTimeout(() => console.log('main: timer fired'), 1000);
+
+// switch(2){
+//     case 1:
+//         console.log("one");
+//         break;
+//     case 2:
+//         console.log("two");
+//         break;
+//     case 3:
+//         console.log("three");
+//         break
+// }
+
+
+// let cpt = prompt("Enter capital city");
+// switch (cpt){
+//     case "ktm":
+//         console.log("paiyo");
+//         break;
+//     case "jvne":
+//         console.log("bhayena");
+//         break;
+//     default :
+//     console.log("not found")
+// }
+
+
+// const res = await fetch('/api/nonexistent'); // returns 404
+// console.log(res.ok);     // false
+// console.log(res.status); // 404
+// NO error thrown, NO promise rejection — fetch "succeeded" from its own perspective
+
+
+// for (let i = 1; i <= 3; i++) {
+//   for (let j = 1; j <= 3; j++) {
+//     console.log(`${i} x ${j} = ${i*j}`);
+//   }
+// }

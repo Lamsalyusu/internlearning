@@ -149,19 +149,6 @@ console.log(!0);     // true (0 is falsy, so !0 is true)
 console.log(!"");    // true ("" is falsy)
 
 
-4. Nullish Coalescing (??)
-What: Returns the right-hand value ONLY IF the left-hand value is null or undefined
-      (unlike ||, it does NOT treat 0, "", or false as "empty").
-Why: Used when 0 or "" are valid values but you still want a fallback for null/undefined.
-Return type: matches whichever operand is returned
-
-let count = 0;
-console.log(count || 10); // 10 (WRONG here, because 0 is falsy but is a valid value!)
-console.log(count ?? 10); // 0  (CORRECT, because 0 is not null/undefined)
-
-let value = null;
-console.log(value ?? "default"); // "default"
-
 
 === TRUTHY vs FALSY VALUES (important background) ===
 Falsy values in JS (only these 6): false, 0, "", null, undefined, NaN
@@ -174,55 +161,3 @@ console.log(Boolean({}));   // true  (empty object is truthy)
 ============================================================================================================
 ============================================================================================================
 ============================================================================================================
-
-=== BITWISE OPERATORS ===
-
-What: Perform operations on the individual BITS (binary representation) of numbers.
-Why: Rarely used in everyday web dev, but useful for low-level operations, 
-     permission flags, performance-critical code, and certain algorithms.
-Return type: number (always — result is a 32-bit signed integer)
-
-1. AND (&)
-What: Returns 1 in each bit position where BOTH bits are 1.
-console.log(5 & 1); 
-// 5 = 101, 1 = 001 -> AND = 001 -> 1
-// Output: 1
-
-2. OR (|)
-What: Returns 1 in each bit position where AT LEAST ONE bit is 1.
-console.log(5 | 1); 
-// 101 | 001 = 101 -> 5
-// Output: 5
-
-3. XOR (^)
-What: Returns 1 in each bit position where bits are DIFFERENT.
-console.log(5 ^ 1); 
-// 101 ^ 001 = 100 -> 4
-// Output: 4
-
-4. NOT (~)
-What: Inverts all bits (also computed as -(x + 1)).
-console.log(~5); // -6
-
-5. Left Shift (<<)
-What: Shifts bits to the LEFT, filling with zeros (multiplies by 2 per shift).
-console.log(5 << 1); // 10 (5 * 2^1)
-
-6. Right Shift (>>)
-What: Shifts bits to the RIGHT, preserving sign (divides by 2 per shift, rounds down).
-console.log(5 >> 1); // 2 (5 / 2, floored)
-
-7. Unsigned Right Shift (>>>)
-What: Shifts bits right, filling with zeros regardless of sign (no negative results).
-console.log(-5 >>> 1); // 2147483645 (treats -5 as unsigned 32-bit number)
-
-
-=== PRACTICAL USE CASE: PERMISSION FLAGS ===
-const READ = 1;    // 001
-const WRITE = 2;    // 010
-const EXECUTE = 4;  // 100
-
-let userPermission = READ | WRITE; // 011 = 3 (has read AND write)
-
-console.log((userPermission & READ) !== 0);    // true  (has read permission)
-console.log((userPermission & EXECUTE) !== 0); // false (no execute permission)
