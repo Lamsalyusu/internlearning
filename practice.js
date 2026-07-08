@@ -502,3 +502,19 @@
 //     console.log(`${i} x ${j} = ${i*j}`);
 //   }
 // }
+// console.log(true === "true");
+// typeof console.log(5 =="5");
+// console.log(typeof "5");
+// console.log(typeof 5);
+
+// let arr = [1,2,3,{
+//     "user":"yuyutsu",
+//     "workplace":"globalime"
+// }]
+// console.log(arr[3]);
+
+if (0){
+    console.log("chalyo")
+}else{
+    console.log("chalena")
+}
