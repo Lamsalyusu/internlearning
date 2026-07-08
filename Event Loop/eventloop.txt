@@ -1,0 +1,31 @@
+Event loop bhaneko JS ko yesto mechanim ho jasle non blocking asynchronous task perform garna help garchha
+
+Callbacks, Promises, and async/await all run on top of the event loop. 
+The event loop is the underlying engine, and these features are the programming patterns we use to interact with it
+
+// 1. Callback Approach
+getUserData(userId, (user) => {
+  console.log(user.name);
+});
+
+// 2. Promise Approach
+getUserData(userId)
+  .then(user => console.log(user.name));
+
+// 3. Async/Await Approach
+const user = await getUserData(userId);
+console.log(user.name);
+
+"JavaScript is single-threaded, meaning it can only do one thing at a time. 
+When it hits a slow task (like a timer or network request), it hands it off to the browser to handle in the background. 
+The Event Loop is the mechanism that waits until JavaScript is completely done running its current code, then pulls those completed background tasks back into action one by one."
+
+onsole.log(2);
+setTimeout(()=>{
+    console.log(3);
+},2000);
+console.log(4);
+
+2  ----> first ma execute hunxa
+4  ----> 2nd ms hunxa kina bhaen bich ma time lagne euta function haleko chham 
+3  ----> 3rd ma response aauxa kina bhane responxe aaaune time lagchha (tink of it as a weatherapi bata weather data taneko hamle response dina time lagyo but aru kaam haru hudai gayo aru le wait garena yeslai)

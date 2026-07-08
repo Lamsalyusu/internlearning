@@ -513,8 +513,34 @@
 // }]
 // console.log(arr[3]);
 
-if (0){
-    console.log("chalyo")
-}else{
-    console.log("chalena")
-}
+// console.log(NaN);
+
+// console.log(1 === "2");
+// console.log(1 = 1);
+
+
+// console.log(2);
+// setTimeout(()=>{
+//     console.log(3);
+// },2000);
+// console.log(4);
+
+// function outerfunction(number){
+//     return function innerfunction(variable){
+//         console.log(variable + number);
+//     }
+// }
+// const out = outerfunction(5);
+// out(3);
+
+// const outerfunction = (number)=>{
+//     return (variable)=>{
+//         return number +variable;
+//     }
+// };
+// const out = outerfunction(5);
+// console.log(out(4));
+
+const outer = (number) =>(variable)=> number +variable;
+const out = outer(5);
+console.log(out(5));
