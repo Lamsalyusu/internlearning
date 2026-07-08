@@ -541,6 +541,69 @@
 // const out = outerfunction(5);
 // console.log(out(4));
 
-const outer = (number) =>(variable)=> number +variable;
-const out = outer(5);
-console.log(out(5));
+// const outer = (number) =>(variable)=> number +variable;
+// const out = outer(5);
+// console.log(out(5));
+
+// function something(name){
+//     return function(surname){
+//         return name + surname;
+//     };
+// }
+
+// const out = something("yuyutsu");
+// // console.log(out(" lamsal"));
+// // const out = something("lamsal");`
+// console.log(out);
+
+// function something(){
+//     var counter = 0;
+//     return function(){
+//         return counter++;
+//     }
+// }
+// const out = something();
+// console.log(out());
+// console.log(out());
+
+// let arr = [1];
+// let newar = [...arr];
+// // console.log(newar);
+// console.log(typeof newar);
+
+// const a = 5;
+// function add(){
+//     console.log(a)
+//     function sub(){
+//         console.log(a)
+//     }
+// }
+// add(sub());
+
+
+// function grandparent(){
+//     const a = "A";
+
+//     function parents(){
+//         let b = "B";
+
+//         function child(){
+//             let c = "C";
+//             console.log(a,b,c)
+//         }
+//         child();
+//     }
+//     parents();
+
+// }
+// grandparent();
+
+const aa = "hello";
+function a(){
+    console.log(a)
+
+    function b(){
+        a();
+    }
+    return b();
+}
