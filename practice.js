@@ -736,4 +736,53 @@
 //     x= 10;
 // }
 
-console.log(typeof TDZ);
+// console.log(typeof TDZ);
+
+// function add(a,b){
+//     // console.log(a+b);
+//     return a + b;
+// }
+// function sum(nums){
+//     return nums(5,4);
+// }
+// console.log(sum(add));
+
+// console.log(typeof 4);
+
+// class Person {
+//   constructor(name, age) {
+//     this.name = name;
+//     this.age = age;
+//   }
+// }
+
+// const p1 = new Person("Yuyutsu", 23);
+// console.log(p1.name); // "Yuyutsu"
+// console.log(p1.age);  // 23
+
+// let i = 5;
+// while(i<5){
+//     console.log(i);
+//     i++;
+// }
+
+// do{
+//     console.log(i);
+//     i++;
+// }while(i<=10);
+
+
+// for (let i =0;i<10;i++){
+//     console.log(i)
+//     if(i==5){
+//         break;
+//     }
+// }
+
+// for (let i = 0;i<=10;i++){
+//     if (i===5){
+//         continue;
+//     }
+//     console.log(i);
+    
+// };
