@@ -641,3 +641,99 @@
 
 // const newout = out(2);
 // console.log(newout());
+
+// let x = 5;
+// function a(num){
+//     // console.log(num + x);
+//     return num;
+// }
+// function b(){
+//     console.log(x+num);
+//     // a(5);
+// }
+// b();
+
+
+// (()=>{
+//     console.log(5 +"yuyutsu");
+// })();
+
+
+// (function hello(){
+//     console.log("ki hal hai")
+
+// })();
+
+// (function(){
+//     console.log("yusu")
+// })();
+
+
+// let x = 1;
+// console.log(x++);
+// console.log(x);
+// let b = ++x;
+// console.log(b)
+// console.log(++x);
+// console.log(x++);
+// console.log(x);
+
+// console.log(++x);
+// console.log(x);
+
+// const person = {
+//   name: "Yuyutsu",
+//   greet: function() {
+//     return this.name; // `this` = person, because person.greet() called it
+//   }
+// };
+
+// // person.greet(); // "Yuyutsu"
+// // const newp = person();
+// // newp.greet();
+
+// console.log(person.greet());
+
+
+// let arr = []
+
+// var x = 5;
+// var x = 10;
+// console.log(x);
+
+// var x = 5;
+// x=6;
+// let x = 5;
+// console.log(x)
+
+
+// var x; // declaration
+// x = 5; //definition 
+// let y; //declaration
+// y=5; // definition
+// const z =0; // initialize
+// console.log(x);
+// console.log(y);
+// console.log(z);
+
+
+
+// const out = name =>{
+//     return `hello ${name}`; 
+// }
+// console.log(out("Yuyutsu"));
+
+// let x;
+// console.log(x);
+// x = 10;
+
+// {
+
+//     // The TDZ is the gap between the start of the scope and the declaration line
+//     //TDZ starts here;
+//     console.log(x); //Crash Hunxa since i am inside TDZ 
+//     let x; //TDZ ends here kina bhane x is initialized to undefined;
+//     x= 10;
+// }
+
+console.log(typeof TDZ);
