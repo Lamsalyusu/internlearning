@@ -613,16 +613,31 @@
 // console.log(aa());
 
 
-var n = 5;
-function a(num){
-    console.log(n);
-    function b(){
-        // console.log(num + n);
-        return num +n;
-    }
-    return b;
 
-}
-var out = a(5);
-console.log(out());
+// function a(num){
+//     console.log(n);
+//     function b(){
+//         // console.log(num + n);
+//         return num +n;
+//     }
+//     return b;
 
+// }
+// var out = a(5);
+// console.log(out());
+// var n = 5;
+// const out = (num) =>{
+//     console.log(n);
+//     const out2 =()=>{
+//         // console.log(num+n);
+//         return num + n;
+//     }
+//     return out2;
+// };
+
+// console.log(out2());
+// console.log(out(2))
+// console.log(out2());
+
+// const newout = out(2);
+// console.log(newout());
