@@ -596,14 +596,33 @@
 //     parents();
 
 // }
-// grandparent();
+// grandparent()
 
-const aa = "hello";
-function a(){
-    console.log(a)
+// let aaa = 0;
+// function a(){
+//     let counter = 0;
+//     return function b(){
+//         a();
+//         return aaa++;
+//     }
+// }
 
+// let aa = a();
+// console.log(aa());
+// console.log(aa());
+// console.log(aa());
+
+
+var n = 5;
+function a(num){
+    console.log(n);
     function b(){
-        a();
+        // console.log(num + n);
+        return num +n;
     }
-    return b();
+    return b;
+
 }
+var out = a(5);
+console.log(out());
+
