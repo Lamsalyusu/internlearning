@@ -849,3 +849,52 @@
 // console.log(neew);
 // let arr = [a, b, c];
 // console.log(arr.reduceRight((acc, n) => acc + n)); // "cba"
+
+
+// class Person {
+//   constructor(name) {
+//     this._name = name; // convention: underscore for "internal" value
+//   }
+
+//   get name() {
+//     // return this._name.toUpperCase();
+//     return this._name;
+//   }
+
+//   set name(newName) {
+//     if (newName.length > 0) {
+//         return this.newName.toUpperCase()
+//     }
+//         this._name = newName;
+//   }
+// }
+
+// const p = new Person("yuyutsu");
+// console.log(p.name); // "YUYUTSU" - calls getter, looks like a property access
+// p.name = "ram";       // calls setter, looks like a normal assignment
+// console.log(p.name);  // "RAM"
+
+
+
+class Animal {
+  constructor(name) {
+    this.name = name;
+  }
+  eat() {
+    return `${this.name} is eating`;
+  }
+}
+
+class Dog extends Animal {
+  constructor(name, breed) {
+    super(name); // MUST call before using `this`
+    this.breed = breed;
+  }
+  bark() {
+    return `${this.name} says woof`;
+  }
+}
+
+const d = new Dog("Rex", "Labrador");
+console.log(d.eat());  // "Rex is eating" - inherited
+console.log(d.bark()); // "Rex says woof"

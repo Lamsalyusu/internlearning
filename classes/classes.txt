@@ -78,3 +78,69 @@ const m = new Maths();
 console.log(m.square); ---> undefined - NOT available on instances
 
 =======================GETTERS AND SETTERS=========================
+---> Let's you access/modify properties like normal fields but run code behind the scenes
+
+class Person{
+    constrctor(name){
+        this._name = name;
+    }
+
+    get name() {
+        return this._name.toUpperCase();
+    }
+    jun hamle name set gareko hunchham ni tyo yeta aayera check bhayera janxa ani mathi getter le chai tyo upper case wala function chalauchha
+    set name (newName){
+        if (newName.length>0) this._name = newName;
+    }
+}
+const p = new Person("Yuyutsu);
+console.log(p.name); ---> "YUYUTSU" - calls getter , loooks like a property access 
+p.name = "ram";  ---> calls setter, looks like a normal assignment 
+console.log(p.name);
+
+=================Private Fields and Methods==================
+use # for private fields and methods
+class BankAccount{
+    #balance = 0; ---> private field
+    deposit (amount) {
+        this.#validate(amount); ---> private method
+        this.#balance +=amount;
+    }
+
+    #validate(amount){
+        if (amount<=0)
+            throw new Error("invalid amount);
+        }
+        getBalance(){
+            return this.#balance
+        }
+    }
+const acc = new BankAccount();
+acc.deposit(100);
+console.log(acc.getBalance());
+console.log(acc.#balance);  ----> syntax error - can't access from outside
+
+
+=====================Inheritance=====================
+extends and super 
+class Animal{
+    constructor(name){
+        this.name = name;
+    }
+    eat(){
+        console.log(`${this.name} is eating`);
+    }
+}
+
+class Dog extends Animal{
+    constructor(name,breed){
+        super(name);  --> must call before using `this` --> super calls the construcor of its parent class 
+        this.breed = breed
+    }
+    bark(){
+        console.log(`${this.name} says woof`);
+    }
+}
+const d = new Dog("Musi", "Pug");
+d.eat();
+d.bark();
