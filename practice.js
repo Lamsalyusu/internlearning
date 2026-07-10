@@ -777,7 +777,8 @@
 //     if(i==5){
 //         break;
 //     }
-// }
+// };
+
 
 // for (let i = 0;i<=10;i++){
 //     if (i===5){
@@ -786,3 +787,65 @@
 //     console.log(i);
     
 // };
+
+// let a = "yuyu";
+// switch (a)
+// {
+//     case "yuyu":
+//         console.log("not found");
+//         break;
+//     case "sjd":
+//         console.log("not found1");
+//         break;
+//     case "fkjhds":
+//         console.log("found");
+//         break;
+// }
+
+
+// let day ="a";
+// switch (day){
+//     case "c":
+//     case "d":
+//         console.log("yo haina");
+//         break;
+//     case a:
+//     console.log("yo chai ho");
+//     break;
+// }
+
+
+// const add =(num ,num2) => num+num2
+// console.log(add(2,3));
+// const square = num => num**2
+// console.log(square(2));
+
+// const add = a => a**2
+// console.log(add(2));
+
+// const makeuser = name => ({name:name});
+// console.log(makeuser("Yuyutsu"));
+
+// const func = function (){
+//     console.log(5);
+// }
+// func();
+
+// function helo(name){
+//     console.log()
+
+// }
+
+// const x;
+// console.log(x);
+
+
+// let a = [2,5,3,8,1,6,9];
+// a.sort((a,b)=>a-b);
+// console.log(a);
+
+// let x = [2,4,8,16];
+// let neew = x.find(x=>x**2);
+// console.log(neew);
+// let arr = [a, b, c];
+// console.log(arr.reduceRight((acc, n) => acc + n)); // "cba"
