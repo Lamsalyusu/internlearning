@@ -27,7 +27,8 @@ const Rectangle = class Rectangle2{
 };
 
 
-================================================================================
+=================================Classes====================================
+============================================================================
 class Person{
     constructor(name,age){
         this.name = name;
@@ -46,7 +47,8 @@ classes are just syntax sugar over functions
 console.log(typeof Person); ---> function 
 
 
-=======Constructor=============
+=========================Constructor====================================
+========================================================================
 -> Runs automatically on new 
 -> Only one constructor per class
 -> used to initialize instance properties(or object properties);
@@ -58,7 +60,8 @@ class Car{
     }
 }
 
-==========Static methods and properties===============
+======================Static methods and properties========================
+===========================================================================
 
 -> These belongs to class itself
 -> not to instances these are called on the classes not on objects
@@ -77,7 +80,8 @@ console.log(Maths.square); ----> 25
 const m = new Maths();
 console.log(m.square); ---> undefined - NOT available on instances
 
-=======================GETTERS AND SETTERS=========================
+=======================GETTERS AND SETTERS====================================
+==============================================================================
 ---> Let's you access/modify properties like normal fields but run code behind the scenes
 
 class Person{
@@ -98,7 +102,9 @@ console.log(p.name); ---> "YUYUTSU" - calls getter , loooks like a property acce
 p.name = "ram";  ---> calls setter, looks like a normal assignment 
 console.log(p.name);
 
-=================Private Fields and Methods==================
+======================Private Fields and Methods=================================
+=================================================================================
+
 use # for private fields and methods
 class BankAccount{
     #balance = 0; ---> private field
@@ -121,7 +127,8 @@ console.log(acc.getBalance());
 console.log(acc.#balance);  ----> syntax error - can't access from outside
 
 
-=====================Inheritance=====================
+==================================Inheritance=================================
+==============================================================================
 extends and super 
 class Animal{
     constructor(name){
@@ -144,3 +151,24 @@ class Dog extends Animal{
 const d = new Dog("Musi", "Pug");
 d.eat();
 d.bark();
+
+
+==============================Method Overriding=================================
+================================================================================
+
+class Animal{
+    speak(){
+        console.log("kunai euta sound");
+    }
+}
+
+class Dog extends Animal{
+    speak() { ---> overrides parent's speak()
+        super.speak() -----> calling the parents method 
+        console.log("woof);
+    }
+}
+
+new Dog.speak();
+---> "Some sound"
+---> "Woof"

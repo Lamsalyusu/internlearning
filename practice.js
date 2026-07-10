@@ -876,25 +876,25 @@
 
 
 
-class Animal {
-  constructor(name) {
-    this.name = name;
-  }
-  eat() {
-    return `${this.name} is eating`;
-  }
-}
+// class Animal {
+//   constructor(name) {
+//     this.name = name;
+//   }
+//   eat() {
+//     return `${this.name} is eating`;
+//   }
+// }
 
-class Dog extends Animal {
-  constructor(name, breed) {
-    super(name); // MUST call before using `this`
-    this.breed = breed;
-  }
-  bark() {
-    return `${this.name} says woof`;
-  }
-}
+// class Dog extends Animal {
+//   constructor(name, breed) {
+//     super(name); // MUST call before using `this`
+//     this.breed = breed;
+//   }
+//   bark() {
+//     return `${this.name} says woof`;
+//   }
+// }
 
-const d = new Dog("Rex", "Labrador");
-console.log(d.eat());  // "Rex is eating" - inherited
-console.log(d.bark()); // "Rex says woof"
+// const d = new Dog("Rex", "Labrador");
+// console.log(d.eat());  // "Rex is eating" - inherited
+// console.log(d.bark()); // "Rex says woof"
