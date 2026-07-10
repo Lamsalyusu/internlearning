@@ -1,0 +1,80 @@
+Classes are templates for creating objects.They encapsulate data with code to work in that data. 
+
+classes can be defined in two ways;
+1.Class Declaration ----> Similar to Function Declaration;
+class Rectangle
+{
+    constructor(height,width){
+        this.height = height;
+        this.width = width;
+    }
+}
+
+2.Class Expression -----> similar to function expression;
+
+const Rectangle = class{
+    constructor(height,width){
+        this.height = height;
+        this.width = width;
+    }
+};
+
+const Rectangle = class Rectangle2{
+    constructor(height,width){
+        this.height = height;
+        this.widht = width;
+    }
+};
+
+
+================================================================================
+class Person{
+    constructor(name,age){
+        this.name = name;
+        this.age = age;
+    }
+    greet(){
+        console.log(`Hi i'm ${this.name});
+    }
+}
+
+const p1 = new Person("Yuyutsu",23);
+p1.greet(); 
+
+
+classes are just syntax sugar over functions
+console.log(typeof Person); ---> function 
+
+
+=======Constructor=============
+-> Runs automatically on new 
+-> Only one constructor per class
+-> used to initialize instance properties(or object properties);
+-> for creating a constructor we must use the specific keyword constructor(a,b,c) in JS;
+
+class Car{
+    constructor(brand){
+        this.brand = brand;
+    }
+}
+
+==========Static methods and properties===============
+
+-> These belongs to class itself
+-> not to instances these are called on the classes not on objects
+-> shown below example for references 
+
+class Maths{
+    static PI = 3.14159; ---> static property 
+
+    static square(x){ ---> static method
+        return x * x;
+    }
+}
+console.log(Maths.PI); ----> 3.14159
+console.log(Maths.square); ----> 25
+
+const m = new Maths();
+console.log(m.square); ---> undefined - NOT available on instances
+
+=======================GETTERS AND SETTERS=========================
