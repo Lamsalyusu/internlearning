@@ -900,3 +900,15 @@
 // console.log(d.bark()); // "Rex says woof"
 
 
+// =================================ReGEX======================================
+// const pattern = /hello/;
+// const pattern = new RegExp('hello');
+
+// console.log(pattern.test('hello world'));
+// console.log(pattern.test('goodbye'));
+
+const str = "hello world";
+console.log(/hello/i.test(str));
+
+
+

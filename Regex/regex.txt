@@ -1,0 +1,37 @@
+Regex are patterns used to match character combinato in string 
+In JS Regex are also objects These patterns are used with the exec() and test() methods of Regex , and with the match(), matchAll(),replace(),replaceAll(),search() and split() methods of string.
+so
+
+=======================Creating a REGEX=====================
+1. Regular expression literal; pattern enclosed between slashes
+const re = /ab+c/; 
+2. Calling the constructor function of the RegExp object as follows:
+const re = new RegExp("ab+c");
+
+Using the constructor function provides runtime compilation of the regular expression. Use the constructor function when you know the regular expression pattern will be changing, or you don't know the pattern and are getting it from another source, such as user input.
+
+
+in Regex we have a common term called pattern and flag:
+Pattern --> a specific thing that we are searching for;
+flag ---> the condition for the checking 
+suppose we have
+In a regex literal like 
+/abc/i:
+abc -->  is the pattern 
+i -->  is the flag (case insensitive)
+
+
+const text = "Apple apple APPLE";
+
+// 1. Only a Pattern (No flags)
+// Looks for the exact, case-sensitive word "apple" and stops at the first match.
+const patternOnly = /apple/; 
+console.log(text.match(patternOnly)); 
+// Output: ["apple"]
+
+// 2. Pattern + Flags
+// Pattern: "apple" 
+// Flags: 'i' (ignore case) and 'g' (global search / find all)
+const patternWithFlags = /apple/ig; 
+console.log(text.match(patternWithFlags)); 
+// Output: ["Apple", "apple", "APPLE"]
