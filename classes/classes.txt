@@ -172,3 +172,21 @@ class Dog extends Animal{
 new Dog.speak();
 ---> "Some sound"
 ---> "Woof"
+
+
+===================================Static and Inheritance ========================
+
+class Animal {
+    static count = 0;
+    constructor(){
+        Animal.count++;
+    }
+}
+class Dog extends Animal {}
+new Dog();
+new Dog();
+console.log(Animal.count); //2 ---> static property are shared up the chain
+
+
+
+
