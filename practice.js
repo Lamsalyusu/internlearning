@@ -618,7 +618,7 @@
 //     console.log(n);
 //     function b(){
 //         // console.log(num + n);
-//         return num +n;
+//         return num + n;
 //     }
 //     return b;
 
@@ -909,6 +909,39 @@
 
 // const str = "hello world";
 // console.log(/hello/i.test(str));
+
+
+// let obj = 
+// {
+//     user:"yuyutsu",
+//     id:5,
+//     loc :"somewhere",
+    
+// }
+
+// let arr=[];
+// arr.push(obj);
+
+// // console.log(arr);
+
+// obj.user = "changed";
+
+// arr.push(obj);
+// // console.log(arr); 
+// obj.id = 10;
+// arr.push(obj);
+// console.log(arr);
+
+// const pureFunc = (a,b) => a+b;
+// console.log(pureFunc(3,4));
+
+// let x = 5;
+// const ImpureFunction = a => a + x;
+// console.log(ImpureFunction(2));
+
+
+
+
 
 
 
