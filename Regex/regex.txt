@@ -35,3 +35,23 @@ console.log(text.match(patternOnly));
 const patternWithFlags = /apple/ig; 
 console.log(text.match(patternWithFlags)); 
 // Output: ["Apple", "apple", "APPLE"]
+
+======================SOME COMMON PATTERNS==================
+
+\d    // any digit 0-9
+\w    // any word character (a-z, A-Z, 0-9, _)
+\s    // any whitespace
+\n    // newline
+.     // any character except newline
+*     // 0 or more times
++     // 1 or more times
+?     // 0 or 1 time
+^     // start of string
+$     // end of string
+[]    // character set
+
+
+/pattern/i   // case insensitive
+/pattern/g   // global (find all matches)
+/pattern/m   // multiline
+/pattern/gi  // combine flags

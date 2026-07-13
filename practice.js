@@ -907,8 +907,8 @@
 // console.log(pattern.test('hello world'));
 // console.log(pattern.test('goodbye'));
 
-const str = "hello world";
-console.log(/hello/i.test(str));
+// const str = "hello world";
+// console.log(/hello/i.test(str));
 
 
 
