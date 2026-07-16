@@ -940,6 +940,55 @@
 // console.log(ImpureFunction(2));
 
 
+// const add = (name,id) =>{
+
+// }
+
+// const std = (name,id)=>{
+// i = 0;
+// while (i<5){
+//     stdnm = prompt("Enter student name");
+//     stdid = prompt("enter student id");
+// }
+// i++;
+//             let arr = [];
+//                 console.log(name);
+//                 console.log(id);
+//                 arr.push(name,id);
+//                 console.log(arr)
+//     }
+//         std(stdnm,stdid);
+
+
+// const std = (a,b) =>{
+//     let i = 0;
+//     let arr = [];
+//     while (i<2) {
+//         stdname = prompt("enter std name");
+//         stdid = prompt("enter student id");
+//         arr.push(stdname,stdid);
+//         i++;
+
+//     if (stdname == "bipash"){
+//         break;
+//     };
+// }  
+//     console.log(arr);
+// };
+// std(stdname,stdid);
+
+// console.log(1 === '1'); // true or false
+
+if(undefined){
+    console.log('ok')
+}else{
+    console.log('no')
+}
+
+// 0 , Nan , undefined ,''
+
+        
+
 
 
 
