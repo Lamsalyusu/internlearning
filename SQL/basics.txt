@@ -68,3 +68,30 @@ you get everyone
 
 with 
 SELECT * FROM users where age>21
+
+Comparision operators in MySQL
+=
+!=
+<>
+>
+<
+>=
+<=
+
+SELECT *
+FROM users
+WHERE age = 21;
+=================================================================
+
+AND operator in MySQL
+SELECT * FROM users WHERE age>=21 AND age <=30;
+Age must be between 21 and 30.
+
+OR operator in MySQL
+SELECT * FROM users WHERE age>21 and age<26;
+
+NOT operator 
+Reverse a Condition
+SELECT * FROM users WHERE NOT age = 21;
+Usually you'll see more readable forms such as:
+WHERE age != 21
