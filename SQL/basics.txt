@@ -1,0 +1,70 @@
+A table is a structured collection of data 
+
+| id | name | email                                   | age |
+| -: | ---- | --------------------------------------- | --: |
+|  1 | Ram  | [ram@gmail.com](mailto:ram@gmail.com)   |  22 |
+|  2 | Hari | [hari@gmail.com](mailto:hari@gmail.com) |  25 |
+|  3 | Sita | [sita@gmail.com](mailto:sita@gmail.com) |  21 |
+
+Each:
+column = attribute
+row = record
+table = collection of records
+database = collection of tables
+
+===================================================================
+
+2. SELECT means: 
+
+"what data do i want?"
+example:
+SELECT name FROM users; ---> give me the name column from users;
+Results --> Ram , Hari , Sita
+
+===================================================================
+
+for multiple columns;
+SELECT name,email FROM users;
+Result:
+| name | email                                   |
+| ---- | --------------------------------------- |
+| Ram  | [ram@gmail.com](mailto:ram@gmail.com)   |
+| Hari | [hari@gmail.com](mailto:hari@gmail.com) |
+| Sita | [sita@gmail.com](mailto:sita@gmail.com) |
+
+what does * means?
+* means -. give me every column.
+SELECT * FROM users;
+
+==================================================================
+
+| id | name | email                                   | age |
+| -: | ---- | --------------------------------------- | --: |
+|  1 | Ram  | [ram@gmail.com](mailto:ram@gmail.com)   |  22 |
+|  2 | Hari | [hari@gmail.com](mailto:hari@gmail.com) |  25 |
+|  3 | Sita | [sita@gmail.com](mailto:sita@gmail.com) |  21 |
+
+==============================
+important backend habit 
+Dont automatically use:
+SELECT * inproduction queries 
+prefer:
+SELECT id,name FROM users;
+==============================
+
+FROM in MySQL?
+"FROM tells MySQL which table should i get this data from?"
+SELECT name FROM users;
+
+SELECT -> what 
+FROM -> where from 
+This simple mental model is extremely useful.
+
+5, where
+WHERE filter rows.
+
+SELECT * FROM users;
+you get everyone 
+
+with 
+SELECT * FROM users where age>21
