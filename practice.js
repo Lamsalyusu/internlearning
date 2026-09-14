@@ -979,15 +979,14 @@
 
 // console.log(1 === '1'); // true or false
 
-if(undefined){
-    console.log('ok')
-}else{
-    console.log('no')
-}
+// if(undefined){
+//     console.log('ok')
+// }else{
+//     console.log('no')
+// }
 
 // 0 , Nan , undefined ,''
-
-        
+    
 
 
 
