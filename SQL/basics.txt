@@ -233,7 +233,7 @@ LIMIT 10 OFFSET 20;
 This is something you'll almost certainly encounter in backend work.
 
 ======================================================================================
-DISTINCT 
+19.DISTINCT 
 Remove Duplicates
 Suppose:
 
@@ -249,13 +249,27 @@ gives:
 pending
 completed
 ======================================================================================
-ALIASES -AS 
+20.ALIASES -AS 
 --> renamiing column in the results
 SELECT name AS username FROM users;
 instead of name you get username;
 
 you can also alias tables 
 SELECT u.name FROM users AS u
+======================================================================================
 
+21.Aggregate Function 
+Aggregate function calculate things 
+SELECT COUNT(*) FROM users;
+--> no of users 
 
+SELECT SUM(amount) FROM orders;
+--> sum of orders 
 
+SELECT AVG(age) FROM users;
+--> average of age 
+
+SELECT MIN(age) FROM users;
+--> minimum value of age from users 
+
+SELECT MAX(age) FROM users;

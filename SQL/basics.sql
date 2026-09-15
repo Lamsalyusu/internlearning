@@ -69,3 +69,19 @@ SELECT DISTINCT status FROM tasks;
 -- ALIASES- AS 
 SELECT name AS username FROM users; // --> you get username in result instead of name 
 SELECT u.name FROM users AS u;
+
+-- Aggregate Functions
+SELECT COUNT(*) FROM users;
+-- no of users 
+
+SELECT SUM(amount) FROM orders;
+-- > sum of orders 
+
+SELECT AVG(age) FROM users;
+-- > average of age 
+
+SELECT MIN(age) FROM users;
+-- > minimum value of age from users 
+
+SELECT MAX(age) FROM users;
+-- > maximum value of age from users
