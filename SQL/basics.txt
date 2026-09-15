@@ -273,3 +273,4 @@ SELECT MIN(age) FROM users;
 --> minimum value of age from users 
 
 SELECT MAX(age) FROM users;
+======================================================================================
