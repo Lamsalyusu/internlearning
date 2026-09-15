@@ -57,3 +57,60 @@ SELECT
 ORDER BY
  ↓
 LIMIT
+
+-- 3. INSERT 
+INSERT INTO users (name, email ,age) VALUES ('RAME','rame@gmail.com',21) ('KRISHNA','krishna@gmail.com',22)
+
+-- 4. UPDATE 
+UPDATE users SET age = 23 WHERE id = 1;
+-- always specify id while updating because it applies update everywhere if id is not mentioned.
+
+DELETE FROM users WHERE id = 5;  // --> specifying the specific id of user
+
+-- BE extremely careful with update and delete.
+
+-- PRIMARY KEY 
+-- A primary key uniquely identifies a row
+-- users
+-- -----------------
+-- id    name
+-- 1     Ram
+-- 2     Hari
+-- 3     Sita
+-- id is usually PRIMARY KEY
+
+CREATE TABLE users (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(100),
+    email VARCHAR(255)
+);
+
+-- Suppose:
+
+-- users
+-- id
+-- ---
+-- 1
+-- 2
+-- 3
+
+-- and:
+
+-- tasks
+-- id   user_id
+-- 1      1
+-- 2      1
+-- 3      2
+
+-- tasks.user_id points to:
+
+-- users.id
+
+-- That's a foreign key relationship.
+
+-- users
+--   │
+--   │ 1
+--   │
+--   └────────< tasks
+--              many
