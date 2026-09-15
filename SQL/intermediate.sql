@@ -65,6 +65,7 @@ INSERT INTO users (name, email ,age) VALUES ('RAME','rame@gmail.com',21) ('KRISH
 UPDATE users SET age = 23 WHERE id = 1;
 -- always specify id while updating because it applies update everywhere if id is not mentioned.
 
+-- 5. DELETE 
 DELETE FROM users WHERE id = 5;  // --> specifying the specific id of user
 
 -- BE extremely careful with update and delete.
@@ -79,6 +80,7 @@ DELETE FROM users WHERE id = 5;  // --> specifying the specific id of user
 -- 3     Sita
 -- id is usually PRIMARY KEY
 
+-- PRIMARY KEY
 CREATE TABLE users (
     id INT PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(100),
@@ -114,3 +116,20 @@ CREATE TABLE users (
 --   │
 --   └────────< tasks
 --              many
+
+SELECT users.name , tasks.title FROM users JOIN tasks ON users.id = tasks.user_id
+
+-- CASE
+SELECT title CASE 
+    WHEN status = 'completed' THEN 'Done'
+    WHEN status = 'pending' THEN 'waiting'
+    ELSE 'Other'
+END AS status_label
+FROM tasks;
+
+
+-- SUBQUERIES
+SELECT * FROM users WHERE id IN (
+    SELECT user_id FROM tasks
+    );
+Find users who have tasks.
