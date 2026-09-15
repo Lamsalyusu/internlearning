@@ -24,3 +24,11 @@ SELECT * FROM users where age = 21 OR age = 25
 -- NOT Operator 
 SELECT * FROM users WHERE NOT age = 21;
 WHERE age! = 21;
+
+-- IN operator (supplement for = operator)
+SELECT * FROM users WHERE age IN (21,25,30);
+
+SELECT * FROM users WHERE status IN ('pending','in-progress')
+
+-- BETWEEN operator in MySQL 
+SELECT * FROM users where age BETWEEN 20 and 30;

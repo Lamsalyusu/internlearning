@@ -95,3 +95,27 @@ Reverse a Condition
 SELECT * FROM users WHERE NOT age = 21;
 Usually you'll see more readable forms such as:
 WHERE age != 21
+
+IN operator in MySQL:
+Instead of:
+WHERE age = 21 
+OR age = 25
+OR age = 30 
+
+we can write :
+WHERE age IN (21,25,30)
+
+for statutes:
+SELECT * 
+FROM tasks 
+WHERE status IN ('pending','in-progress')
+===================================================================
+
+BETWEEN in MySQL:
+Instead of writing WHERE age>=21 AND age<=25
+
+we can write:
+WHERE age BETWEEN 20 and 30;
+
+it can also be useful for numbers dates ranges
+SELECT * FROM tasks WHERE due_date BETWEEN '2026-09-03' AND '2026-09-30'
